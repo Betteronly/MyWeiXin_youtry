@@ -1,4 +1,4 @@
-package com.youtry.myweixin_youtry.weixin.util;
+package com.youtry.myweixin_youtry.util;
 
 import java.io.InputStream;
 import java.io.Writer;

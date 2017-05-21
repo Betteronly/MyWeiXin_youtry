@@ -1,0 +1,20 @@
+
+公众号APPID： wxde94b700faa2bf44
+公众号密钥：  8919ff46e96695e488f497c3df5ccff1
+
+https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxde94b700faa2bf44&secret=8919ff46e96695e488f497c3df5ccff1
+
+
+access_token:    ZM0dHYHB2x7sRHfJVM9_k1REgtXlW-KFjaBfBVIgHSHdtPX8GT-owYbRv7Twj2q_Rppap-2Z9wcl9T2Pwq5gLk8rcx9gi4K8qpyf_et9mCnYYDE6VKMq_yjqQFr33qj4MKViAFAAYJ
+                 zBSl1cDMaKtt4E5fH8EHi7ZpQHDQY2zdQTdmXpsqLvG-Ho61WCPUoRA92YbIGjuAnEGqyR3t97GAZjCyLUh1Bpwj8DEkjxhDvbGLMVDZ1nhkyqpbHHO1ihzSAKFS2oyqTTWdAIAJJM
+{"access_token":"A2YyRZC5RFd6gBUs6jHJq0kHnzTKCU-z-CbOWaJ72t3FpUc02CRmN4FY3q1WquAcOhrSHP72C9cv_xhAwOKBtVG34julKs2BAq1Bznkxe4sJqqXGrE9yhHM8ZSkTtal6ZQPeACANED","expires_in":7200}
+                 g0WUxkxTswThVeFxB7nvNDZTUjkSXkR2QfPiA0NyrX2jY8nKMh2q1OT3T-GU56ZTmu7EsK1Z8fsI1cPKQe0XbOMsuquAjz9EJH7E9j0ZbrhFiaGzBrCZZ4KgZXZ92ihlLATjAFAZOH
+				 
+				 
+{"access_token":"Ms3K1Qj1DW-WhJtgbTK_RNj76TyfFXVgBUj1zU5HBXATFp47a7AAEveTasEctfC5TzMFn2KaEMKqAwyFUAIY9RBU4h2hxrEMQvyOYy9HKRAZFHeAHAQWY","expires_in":7200}
+
+
+    // AppID(应用ID)
+    static public String appid;
+    // AppSecret(应用密钥)
+    static public String appsecret;

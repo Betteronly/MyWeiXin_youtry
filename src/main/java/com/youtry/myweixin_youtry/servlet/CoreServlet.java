@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.youtry.myweixin_youtry.service.CoreService;
-import com.youtry.myweixin_youtry.weixin.util.SignUtil;
+import com.youtry.myweixin_youtry.util.SignUtil;
 
 /**
  * 类名: CoreServlet </br>

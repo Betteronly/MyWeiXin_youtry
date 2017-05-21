@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.youtry.myweixin_youtry.message.resp.TextMessage;
-import com.youtry.myweixin_youtry.weixin.util.MessageUtil;
+import com.youtry.myweixin_youtry.util.MessageUtil;
 
 /**
  * 类名: CoreService </br>

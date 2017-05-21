@@ -1,4 +1,4 @@
-package com.youtry.myweixin_youtry.weixin.util;
+package com.youtry.myweixin_youtry.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
