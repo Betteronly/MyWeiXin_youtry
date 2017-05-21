@@ -2,6 +2,16 @@
 公众号APPID： wxde94b700faa2bf44
 公众号密钥：  8919ff46e96695e488f497c3df5ccff1
 
+
+
+测试号信息
+appID
+			wx3c37aec02f10b164
+appsecret
+			743e889ea363a61e4cc8c42643ce25b3
+
+
+
 https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxde94b700faa2bf44&secret=8919ff46e96695e488f497c3df5ccff1
 
 

@@ -91,6 +91,11 @@ public class CoreService {
                 // 上报地理位置
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_LOCATION)) {
                     // TODO 处理上报地理位置事件
+                    // 地理位置 纬度
+                    String latitude = requestMap.get("Latitude");
+                    // 地理位置 经度
+                    String longitude = requestMap.get("Longitude");
+                    respContent = "感谢您上传位置[纬度:" + latitude + ",经度:" + longitude + "]";
                 }
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {

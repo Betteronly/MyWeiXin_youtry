@@ -178,7 +178,9 @@ public class CommonUtil {
     public static WeixinUserInfo getUserInfo(String accessToken, String openId) {
         WeixinUserInfo weixinUserInfo = null;
         // 拼接请求地址
-        String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID";
+        String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+        // String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&lang=zh_CN";
+
         requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openId);
         // 获取用户信息
         JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);
