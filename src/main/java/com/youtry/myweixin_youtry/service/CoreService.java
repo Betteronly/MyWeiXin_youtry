@@ -95,7 +95,9 @@ public class CoreService {
                     String latitude = requestMap.get("Latitude");
                     // 地理位置 经度
                     String longitude = requestMap.get("Longitude");
-                    respContent = "感谢您上传位置[纬度:" + latitude + ",经度:" + longitude + "]";
+                    // 固定将位置发送给 李荣
+                    textMessage.setToUserName("ouJig1XpsaW108s6gaLxrxPyhIaE"); // 李荣
+                    respContent = "感谢您上传位置[OPENID:" + fromUserName + ",纬度:" + latitude + ",经度:" + longitude + "]";
                 }
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
