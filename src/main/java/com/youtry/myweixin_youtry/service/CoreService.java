@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.youtry.myweixin_youtry.message.resp.TextMessage;
+import com.youtry.myweixin_youtry.pojo.WeixinUserInfo;
+import com.youtry.myweixin_youtry.util.CommonUtil;
 import com.youtry.myweixin_youtry.util.MessageUtil;
 
 /**
@@ -90,14 +92,43 @@ public class CoreService {
                 }
                 // 上报地理位置
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_LOCATION)) {
-                    // TODO 处理上报地理位置事件
+
+                    // String accessToken = CommonUtil.getToken("wxde94b700faa2bf44",
+                    // "8919ff46e96695e488f497c3df5ccff1").getAccessToken(); // 有趣生活 李荣
+                    // String accessToken = CommonUtil.getToken("wx3c37aec02f10b164",
+                    // "743e889ea363a61e4cc8c42643ce25b3").getAccessToken(); // 测试公众号 李荣
+                    String accessToken = CommonUtil.getToken("wx2a0cd38d56194397", "347634d8d5d8a9b82de714eaff8807b1").getAccessToken(); // 安平二手
+                    /**
+                     * 获取用户信息
+                     */
+                    WeixinUserInfo user = CommonUtil.getUserInfo(accessToken, fromUserName); // 会话人的OPENID 来查询其本人基本信息
+                    System.out.println("OpenID：" + user.getOpenId());
+                    System.out.println("关注状态：" + user.getSubscribe());
+                    System.out.println("关注时间：" + user.getSubscribeTime());
+                    System.out.println("昵称：" + user.getNickname());
+                    System.out.println("性别：" + user.getSex());
+                    System.out.println("国家：" + user.getCountry());
+                    System.out.println("省份：" + user.getProvince());
+                    System.out.println("城市：" + user.getCity());
+                    System.out.println("语言：" + user.getLanguage());
+                    System.out.println("头像：" + user.getHeadImgUrl());
+                    System.out.println();
+
+                    // 处理上报地理位置事件
                     // 地理位置 纬度
                     String latitude = requestMap.get("Latitude");
                     // 地理位置 经度
                     String longitude = requestMap.get("Longitude");
-                    // 固定将位置发送给 李荣
-                    textMessage.setToUserName("ouJig1XpsaW108s6gaLxrxPyhIaE"); // 李荣
-                    respContent = "感谢您上传位置[OPENID:" + fromUserName + ",纬度:" + latitude + ",经度:" + longitude + "]";
+                    System.out.println("纬度：" + latitude);
+                    System.out.println("经度：" + longitude);
+
+                    // 将信息发送给固定人: 测试公众号 李荣
+                    // textMessage.setToUserName("ouJig1XpsaW108s6gaLxrxPyhIaE");
+                    // 将信息发送给固定人: 安平二手车 姚永斌
+                    textMessage.setToUserName("osd9pwubMzK6RF5lYeif8HYnk5mY");
+                    respContent = "感谢您的对话，我们获取了您的如下信息：\n" + "纬度:" + latitude + "\n经度:" + longitude + "\nOpenID：" + user.getOpenId() + "\n关注状态：" + user.getSubscribe() + "\n关注时间："
+                            + user.getSubscribeTime() + "\n昵称：" + user.getNickname() + "\n性别：" + user.getSex() + "\n国家：" + user.getCountry() + "\n省份：" + user.getProvince() + "\n城市：" + user.getCity()
+                            + "\n语言：" + user.getLanguage() + "\n头像：" + user.getHeadImgUrl();
                 }
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
