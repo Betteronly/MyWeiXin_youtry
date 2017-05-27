@@ -6,10 +6,12 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>OAuthPersonInfo.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
   <servlet>
     <servlet-name>youtryServlet</servlet-name>
     <servlet-class>com.youtry.myweixin_youtry.servlet.CoreServlet</servlet-class>
@@ -18,4 +20,14 @@
     <servlet-name>youtryServlet</servlet-name>
     <url-pattern>/youtryServlet</url-pattern>
   </servlet-mapping>
+s
+   <servlet>
+        <servlet-name>oauthServlet</servlet-name>
+        <servlet-class>com.youtry.myweixin_youtry.servlet.OAuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>oauthServlet</servlet-name>
+        <url-pattern>/oauthServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

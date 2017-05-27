@@ -16,7 +16,7 @@ import javax.net.ssl.TrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.youtry.myweixin_youtry.pojo.Token;
+import com.youtry.myweixin_youtry.pojo.AccessToken;
 import com.youtry.myweixin_youtry.pojo.WeixinUserInfo;
 
 import net.sf.json.JSONException;
@@ -108,15 +108,15 @@ public class CommonUtil {
      *            密钥
      * @return
      */
-    public static Token getToken(String appid, String appsecret) {
-        Token token = null;
+    public static AccessToken getToken(String appid, String appsecret) {
+        AccessToken token = null;
         String requestUrl = token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
         // 发起GET请求获取凭证
         JSONObject jsonObject = httpsRequest(requestUrl, "GET", null);
 
         if (null != jsonObject) {
             try {
-                token = new Token();
+                token = new AccessToken();
                 token.setAccessToken(jsonObject.getString("access_token"));
                 token.setExpiresIn(jsonObject.getInt("expires_in"));
             } catch (JSONException e) {

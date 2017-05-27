@@ -2,7 +2,7 @@ package com.youtry.myweixin_youtry.test;
 
 import org.junit.Test;
 
-import com.youtry.myweixin_youtry.pojo.Token;
+import com.youtry.myweixin_youtry.pojo.AccessToken;
 import com.youtry.myweixin_youtry.pojo.WeixinUserInfo;
 import com.youtry.myweixin_youtry.util.CommonUtil;
 
@@ -56,7 +56,7 @@ public class TokenTest {
     // @Test
     public void testGetToken2() {
         // Token token = CommonUtil.getToken("wxde94b700faa2bf44", "8919ff46e96695e488f497c3df5ccff1"); //有趣生活
-        Token token = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3"); // 测试公众号
+        AccessToken token = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3"); // 测试公众号
         System.out.println("access_token:" + token.getAccessToken());
         System.out.println("expires_in:" + token.getExpiresIn());
     }
