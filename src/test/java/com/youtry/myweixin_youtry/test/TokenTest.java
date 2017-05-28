@@ -1,5 +1,8 @@
 package com.youtry.myweixin_youtry.test;
 
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_ID;
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_SECRET;
+
 import org.junit.Test;
 
 import com.youtry.myweixin_youtry.pojo.AccessToken;
@@ -56,7 +59,8 @@ public class TokenTest {
     // @Test
     public void testGetToken2() {
         // Token token = CommonUtil.getToken("wxde94b700faa2bf44", "8919ff46e96695e488f497c3df5ccff1"); //有趣生活
-        AccessToken token = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3"); // 测试公众号
+        // AccessToken token = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3"); // 测试公众号
+        AccessToken token = CommonUtil.getToken(APP_APP_ID, APP_APP_SECRET); // 公众号
         System.out.println("access_token:" + token.getAccessToken());
         System.out.println("expires_in:" + token.getExpiresIn());
     }
@@ -65,7 +69,8 @@ public class TokenTest {
     public void testGetToken3() {
         // 获取接口访问凭证
         // String accessToken = CommonUtil.getToken("wxde94b700faa2bf44", "8919ff46e96695e488f497c3df5ccff1").getAccessToken(); // 有趣生活
-        String accessToken = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3").getAccessToken(); // 测试公众号
+        // String accessToken = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3").getAccessToken(); // 测试公众号
+        String accessToken = CommonUtil.getToken(APP_APP_ID, APP_APP_SECRET).getAccessToken(); // 公众号
         /**
          * 获取用户信息
          */

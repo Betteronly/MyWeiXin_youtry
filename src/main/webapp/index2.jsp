@@ -9,8 +9,7 @@
         欢迎访问我的网站 youtry.applinzi.com
     <br/>
     <br/>
+    index2.jsp
     <br/>
-    <a href="index2.jsp">跳转index2.jsp</a>
-    <a href="OAuthPersonInfo.jsp">跳转OAuthPersonInfo.jsp</a>
 </body>
 </html>

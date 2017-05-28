@@ -20,6 +20,7 @@
     <servlet-name>youtryServlet</servlet-name>
     <url-pattern>/youtryServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>oauthServlet</servlet-name>
     <servlet-class>com.youtry.myweixin_youtry.servlet.OAuthServlet</servlet-class>

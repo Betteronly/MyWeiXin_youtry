@@ -1,11 +1,17 @@
 package com.youtry.myweixin_youtry.servlet;
 
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_ID;
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_SECRET;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.youtry.myweixin_youtry.pojo.SNSUserInfo;
 import com.youtry.myweixin_youtry.pojo.WeixinOauth2Token;
@@ -21,10 +27,15 @@ import com.youtry.myweixin_youtry.util.AdvancedUtil;
 public class OAuthServlet extends HttpServlet {
     private static final long serialVersionUID = -1847238807216447030L;
 
+    private static Logger log = LoggerFactory.getLogger(OAuthServlet.class);
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
+
+        log.info("request:[" + request.toString() + "]");
+        System.out.println("request:[" + request.toString() + "]");
 
         // 用户同意授权后，能获取到code
         String code = request.getParameter("code");
@@ -33,7 +44,7 @@ public class OAuthServlet extends HttpServlet {
         // 用户同意授权
         if (!"authdeny".equals(code)) {
             // 获取网页授权access_token
-            WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3", code);
+            WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken(APP_APP_ID, APP_APP_SECRET, code);
             // 网页授权接口访问凭证
             String accessToken = weixinOauth2Token.getAccessToken();
             // 用户标识

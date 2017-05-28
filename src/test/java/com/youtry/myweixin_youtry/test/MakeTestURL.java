@@ -17,11 +17,12 @@ public class MakeTestURL {
      * @throws 说明发生此异常的条件
      */
     public static void main(String[] args) {
-        String source = "http://youtry.applinzi.com/youtryServlet";
+        // String source = "http://youtry.applinzi.com/youtryServlet";
+        String source = "http://youtry.applinzi.com/oauthServlet";
         // decode:http%3a%2f%2fyoutry.applinzi.com%2fyoutryServlet
-        String source1 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3c37aec02f10b164&redirect_uri=http%3A%2F%2Fyoutry.applinzi.com%2FyoutryServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+        String source1 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3c37aec02f10b164&redirect_uri=http%3a%2f%2fyoutry.applinzi.com%2foauthServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
         // decode:https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Foauth2%2Fauthorize%3Fappid%3Dwx3c37aec02f10b164%26redirect_uri%3Dhttp%3A%2F%2Fyoutry.applinzi.com%2FyoutryServlet%26response_type%3Dcode%26scope%3Dsnsapi_base%26state%3DSTATE%23wechat_redirect
-        String source2 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3c37aec02f10b164&redirect_uri=http%3A%2F%2Fyoutry.applinzi.com%2FyoutryServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        String source2 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3c37aec02f10b164&redirect_uri=http%3a%2f%2fyoutry.applinzi.com%2foauthServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         System.out.println(CommonUtil.urlEncodeUTF8(source));
     }
 

@@ -34,5 +34,9 @@
         else 
             out.print("用户不同意授权,未获取到用户信息！");
     %>
+    <br/>
+    <br/>
+    <br/>
+    <a href="index.jsp">跳转index</a>
 </body>
 </html>
