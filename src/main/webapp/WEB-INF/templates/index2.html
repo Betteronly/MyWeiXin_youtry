@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Hello World!</h2> 
+	<form action="./user/success" method="GET">
+		<input id="name1" name="name1" value="张三"/>
+		<br/> 
+		<input id="password1" name="password1" value="123456"/>
+		<br/> 
+		<input type="submit" value="提交"/>
+	</form>
+
+	<h2>Form2</h2> 
+    <form action="./user/success2" method="POST">
+        <input id="name2" name="name2" value="张三李四"/>
+        <br/> 
+        <input id="password2" name="password2" value="123456"/>
+        <br/> 
+        <input type="submit" value="提交"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
+
+<head>
+<!-- <meta charset="UTF-8"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>陪教 统计/通知/报名 【组织】</title>
+<!--
+<link rel="stylesheet" type="text/css" media="all" href="../../css/extrathyme.css" th:href="@{/css/extrathyme.css}" />
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/default/easyui.css" th:href="@{/jquery-easyui-1.5.1/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/icon.css" th:href="@{/jquery-easyui-1.5.1/themes/icon.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/demo/demo.css" th:href="@{/jquery-easyui-1.5.1/demo/demo.css}">
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.mobile.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.mobile.js}"></script>
+ -->
+
+
+<!-- 引入 Bootstrap -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../../css/teachtools.css" th:href="@{/css/teachtools.css}">
+<script type="text/javascript" src="../../js/teachtools.js" th:src="@{/js/teachtools.js}"></script>
+<script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+<script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+
+</head>
+
+<body>
+  <h3>霍小 > 一四班</h3>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">2016年12月24日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body hover">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="min-width40">课程</th>
+                <th class="min-width40">期限</th>
+                <th>附图</th>
+                <th class="min-width80">作业内容</th>
+                <th class="min-width50">完成情况</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="hws : ${homeWorks.listHomeWorks}">
+                <td th:text="${hws.course}">语文</td>
+                <td th:text="${hws.deadline}">当天</td>
+                <td class="left">
+                  <img id="img1" class="min" src="../../images/kittens.jpg" th:src="@{/images/__${hws.picPath}__}" alt="作业缩略图">
+                </td>
+                <td th:text="${hws.content}">抄写</td>
+                <td>
+                  <div id="myButtons1" class="bs-example">
+                    <button type="button" class="btn btn-primary" data-loading-text="已完成" th:text="${hws.completionStatus}">未</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2016年12月23日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse in1">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">2016年12月22日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">2016年12月21日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFour" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">2016年12月20日 作业</a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse">
+        <div class="panel-body">数学作业1：P115 改错</div>
+        <div class="panel-body">数学作业2：P115 改错</div>
+        <div class="panel-body">语文作业1：P115 改错</div>
+        <div class="panel-body">语文作业2：P115 改错</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

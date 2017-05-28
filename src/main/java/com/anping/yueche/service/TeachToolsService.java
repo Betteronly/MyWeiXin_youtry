@@ -1,9 +1,10 @@
 package com.anping.yueche.service;
 
+
 import java.util.List;
 
-import com.betteronly.teachtools.entity.GradeAndClass;
-import com.betteronly.teachtools.entity.HomeWorks;
+import com.anping.yueche.entity.GradeAndClass;
+import com.anping.yueche.entity.HomeWorks;
 
 public interface TeachToolsService {
 

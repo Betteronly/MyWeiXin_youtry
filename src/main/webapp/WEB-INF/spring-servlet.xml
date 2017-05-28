@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+  <!-- **************************************************************** -->
+  <!-- Use spring servlet for all requests, including static resources -->
+  <!-- **************************************************************** -->
+  <mvc:default-servlet-handler />
+
+  <!-- **************************************************************** -->
+  <!-- RESOURCE FOLDERS CONFIGURATION -->
+  <!-- Dispatcher configuration for serving static resources -->
+  <!-- **************************************************************** -->
+  <mvc:resources location="/images/" mapping="/images/**" />
+  <mvc:resources location="/css/" mapping="/css/**" />
+  <mvc:resources location="/js/" mapping="/js/**" />
+  <mvc:resources location="/jquery-easyui-1.5.1/" mapping="/jquery-easyui-1.5.1/**" />
+
+  <!-- **************************************************************** -->
+  <!-- SPRING ANNOTATION PROCESSING ： Use @MVC annotations -->
+  <!-- **************************************************************** -->
+  <mvc:annotation-driven />
+  <!-- <mvc:annotation-driven conversion-service="conversionService" /> -->
+
+  <!-- **************************************************************** -->
+  <!-- User @Controller, @Service... annotations -->
+  <!-- **************************************************************** -->
+  <context:component-scan base-package="com.anping.yueche" />
+
+  <!-- **************************************************************** -->
+  <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
+  <!-- Standard Spring MessageSource implementation -->
+  <!-- **************************************************************** -->
+  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basename" value="Messages" />
+  </bean>
+
+  <!-- **************************************************************** -->
+  <!-- CONVERSION SERVICE -->
+  <!-- Standard Spring formatting-enabled implementation -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean id="conversionService"
+    class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <property name="formatters">
+    <set>
+    <bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter" />
+    <bean class="thymeleafexamples.stsm.web.conversion.DateFormatter" />
+    </set>
+    </property>
+    </bean>
+  -->
+
+  <!-- **************************************************************** -->
+  <!-- THYMELEAF-SPECIFIC ARTIFACTS -->
+  <!-- TemplateResolver <- TemplateEngine <- ViewResolver -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean id="templateResolver"
+    class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+    <property name="prefix" value="/WEB-INF/templates/" />
+    <property name="suffix" value=".html" />
+    <property name="templateMode" value="HTML5" />
+    <property name="characterEncoding" value="UTF-8" />
+    <property name="cacheable" value="false" />
+    </bean>
+  -->
+
+  <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+    <property name="prefix" value="/WEB-INF/templates/" />
+    <property name="suffix" value=".html" />
+    <property name="characterEncoding" value="UTF-8" />
+    <property name="templateMode" value="HTML" />
+    <property name="cacheable" value="false" />
+    <!-- <property name="order" value="1" /> -->
+  </bean>
+
+  <!-- **************************************************************** -->
+  <!-- Implementation of ITemplateEngine meant for Spring MVC applications, that establishes by
+    default an instance of SpringStandardDialect as a dialect (instead of an instance of StandardDialect.
+    It also configures a SpringMessageResolver as message resolver, and implements the MessageSourceAware
+    interface in order to let Spring automatically setting the MessageSource used at
+    the application (bean needs to have id "messageSource").
+    If this Spring standard setting needs to be overridden,
+    the setTemplateEngineMessageSource(MessageSource) can be used. -->
+  <!-- Thymeleaf Template Engine (Spring4-specific version) -->
+  <!-- **************************************************************** -->
+  <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+    <property name="templateResolvers">
+      <set>
+        <ref bean="templateResolver" />
+      </set>
+    </property>
+  </bean>
+
+  <!-- **************************************************************** -->
+  <!-- View and View Resolvers in SpringMVC -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    <property name="prefix" value="/WEB-INF/jsps/" />
+    <property name="suffix" value=".jsp" />
+    <property name="order" value="2" />
+    <property name="viewNames" value="*jsp" />
+    </bean>
+  -->
+
+  <!-- **************************************************************** -->
+  <!-- View and View Resolvers in Thymeleaf -->
+  <!-- HTML5 通常引擎 -->
+  <!-- **************************************************************** -->
+  <!-- Implementation of the Spring MVC ViewResolver interface.
+    View resolvers execute after the controller ends its execution.
+    They receive the name of the view to be processed and are in
+    charge of creating (and configuring) the corresponding View object for it.
+    The View implementations managed by this class are subclasses of AbstractThymeleafView.
+    By default, ThymeleafView is used. -->
+
+  <bean id="viewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+    <property name="templateEngine" ref="templateEngine" />
+    <property name="characterEncoding" value="UTF-8" />
+    <!-- <property name="viewNames" value="*.html,*.xhtml" /> -->
+    <!-- <property name="order" value="1" /> -->
+  </bean>
+
+  <!-- **************************************************************** -->
+  <!-- Base implementation of the Spring MVC View interface.
+    Views represent a template being executed, after being resolved (and instantiated) by a ViewResolver.
+    This is the default view implementation resolved by ThymeleafViewResolver. -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean name="main" class="org.thymeleaf.spring4.view.ThymeleafView">
+    <property name="staticVariables">
+    <map>
+    <entry key="footer" value="Some company: &lt;b&gt;ACME&lt;/b&gt;" />
+    </map>
+    </property>
+    </bean>
+  -->
+
+  <!-- **************************************************************** -->
+  <!-- HTML5 With Ajax -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean class="org.thymeleaf.spring4.view.AjaxThymeleafViewResolver">
+    <property name="viewClass" value="org.thymeleaf.spring4.view.FlowAjaxThymeleafView" />
+    <property name="templateEngine" ref="templateEngine" />
+    </bean>
+  -->
+
+  <!-- **************************************************************** -->
+  <!-- Muti XML files Loader:Srping 应用上下文可指定加载多个XML配置文件 -->
+  <!-- **************************************************************** -->
+  <!--
+    <bean id="classLoaderTemplateResolver"
+    class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver ">
+    <property name="order" value="2" />
+    <property name="templateMode" value="HTML5" />
+    </bean>
+  -->
+
+
+
+  <!-- **************************************************************** -->
+  <!-- json转换器                                                       -->
+  <!-- **************************************************************** -->
+  <!-- 方法一 ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- 方法二:OK -->
+  <!--
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+    <list>
+    <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+    <property name="supportedMediaTypes">
+    <list>
+    <value>text/html; charset=UTF-8</value>
+    <value>application/json;charset=UTF-8</value>
+    </list>
+    </property>
+    </bean>
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <property name="supportedMediaTypes">
+    <list>
+    <value>text/html; charset=UTF-8</value>
+    <value>application/json;charset=UTF-8</value>
+    </list>
+    </property>
+    </bean>
+    </list>
+    </property>
+    </bean>
+  -->
+</beans>
+ 

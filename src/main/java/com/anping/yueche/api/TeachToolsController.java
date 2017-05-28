@@ -1,5 +1,6 @@
 package com.anping.yueche.api;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.betteronly.teachtools.entity.GradeAndClass;
-import com.betteronly.teachtools.entity.HomeWork;
-import com.betteronly.teachtools.entity.HomeWorks;
-import com.betteronly.teachtools.service.TeachToolsService;
+import com.anping.yueche.entity.GradeAndClass;
+import com.anping.yueche.entity.HomeWork;
+import com.anping.yueche.entity.HomeWorks;
+import com.anping.yueche.service.TeachToolsService;
 
 @Controller
 @RequestMapping("/teachtools/*")

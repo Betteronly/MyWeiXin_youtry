@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
+
+<head>
+<!-- <meta charset="UTF-8"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>陪教 统计/通知/报名 【组织】</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../css/extrathyme.css" th:href="@{/css/extrathyme.css}" />
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/default/easyui.css" th:href="@{/jquery-easyui-1.5.1/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/icon.css" th:href="@{/jquery-easyui-1.5.1/themes/icon.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/demo/demo.css" th:href="@{/jquery-easyui-1.5.1/demo/demo.css}">
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.mobile.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.mobile.js}"></script>
+</head>
+
+<body>
+  <div class="leaguetable">
+    <h2>Thymeleaf DataGrid</h2>
+    <table>
+      <thead>
+        <tr>
+          <th th:text="#{school.name}">学校名称</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cls : ${classes}" score:classforposition="${tStat.count}">
+          <td th:text="${cls.school}">XXX学校</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br />
+  <br />
+  <div class="leaguetable">
+    <table>
+      <thead>
+        <tr>
+          <th th:text="#{grade.name}">年级</th>
+          <th th:text="#{class.name}">班级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cls : ${classes}" score:classforposition="${tStat.count}">
+          <td th:text="${cls.grade}">xxx年级</td>
+          <td th:text="${cls.class}">xxx班</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br />
+  <br />
+
+</body>
+</html>

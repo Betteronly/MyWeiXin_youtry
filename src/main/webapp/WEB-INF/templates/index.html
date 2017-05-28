@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>陪教 统计/通知/报名</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 引入 Bootstrap -->
+<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+  <br />
+  <h2>统计/通知/报名</h2>
+  <form action="teachtools" method="GET">
+    <input type="submit" value="跳转 teachtools" />
+  </form>
+  <br />
+  <form action="teachtools/schools_thymeleaf" method="GET">
+    <input type="submit" value="跳转 teachtools/schools_thymeleaf" />
+  </form>
+  <br />
+  <form action="teachtools/schools_easyui" method="GET">
+    <input type="submit" value="跳转 teachtools/schools_easyui" />
+  </form>
+  <br />
+  <form action="bootstrap" method="GET">
+    <input type="submit" value="跳转 bootstrap" />
+  </form>
+  <br />
+  <form action="teachtools/schools_bootstrap" method="GET">
+    <input type="submit" value="跳转 teachtools/schools_bootstrap" />
+  </form>
+  <br />
+  <form action="teachtools/schools" method="GET">
+    <input type="submit" value="跳转学校首页 teachtools/schools" />
+  </form>
+  <br />
+  <br />
+  <br />
+  <h2>Hello World!</h2>
+  <form action="./user/success" method="GET">
+    <input id="name1" name="name1" value="张三" />
+    <br />
+    <input id="password1" name="password1" value="123456" />
+    <br />
+    <input type="submit" value="提交" />
+  </form>
+  <h2>Form2</h2>
+  <form action="./user/success2" method="POST">
+    <input id="name2" name="name2" value="张三李四" />
+    <br />
+     
+    <input id="password2" name="password2" value="123456" />
+    <br />
+    <input type="submit" value="提交" />
+  </form>
+</body>
+</html>

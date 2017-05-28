@@ -1,13 +1,14 @@
 package com.anping.yueche.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.betteronly.teachtools.entity.GradeAndClass;
-import com.betteronly.teachtools.entity.HomeWork;
-import com.betteronly.teachtools.entity.HomeWorks;
+import com.anping.yueche.entity.GradeAndClass;
+import com.anping.yueche.entity.HomeWork;
+import com.anping.yueche.entity.HomeWorks;
 
 @Service
 public class TeachToolsServiceImpl implements TeachToolsService {
