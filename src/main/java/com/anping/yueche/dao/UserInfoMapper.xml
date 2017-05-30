@@ -8,6 +8,32 @@
   <!-- 表示将查询结果封装成一个User类的对象返回,User类就是t_user表所对应的实体类 -->
   <!-- 根据id查询得到一个user对象 -->
   <select id="getUserInfo" parameterType="String" resultType="com.anping.yueche.pojo.UserInfo">
-    select open_id,name,phone from user_info where open_id=#{openId}
+    select user_no as userNo
+          ,open_id as openId
+          ,nick_name as nickName
+          ,user_id as userId
+          ,name
+          ,phone
+          ,addr
+     from user_info where open_id=#{openId}
   </select>
+  
+<!-- 
+  <resultMap id="BaseResultMap" type="com.anping.yueche.pojo.UserInfo">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, describe, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String">
+    select
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+ -->
+ 
 </mapper>
