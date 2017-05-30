@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
+
+<head>
+<!-- <meta charset="UTF-8"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>安 平 约 车</title>
+<!--
+<link rel="stylesheet" type="text/css" media="all" href="../../css/extrathyme.css" th:href="@{/css/extrathyme.css}" />
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/default/easyui.css" th:href="@{/jquery-easyui-1.5.1/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/themes/icon.css" th:href="@{/jquery-easyui-1.5.1/themes/icon.css}">
+<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.5.1/demo/demo.css" th:href="@{/jquery-easyui-1.5.1/demo/demo.css}">
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.min.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.min.js}"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.5.1/jquery.easyui.mobile.js" th:src="@{/jquery-easyui-1.5.1/jquery.easyui.mobile.js}"></script>
+ -->
+
+
+<!-- 引入 Bootstrap -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../../css/teachtools.css" th:href="@{/css/teachtools.css}">
+<script type="text/javascript" src="../../js/teachtools.js" th:src="@{/js/teachtools.js}"></script>
+<script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+<script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+
+</head>
+
+<body>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h4 class="panel-title text-center">
+        <a data-toggle="collapse" data-parent="#accordion" href="#">安 平 约 车</a>
+      </h4>
+    </div>
+
+    <div style="padding: 20px 30px 30px;">
+      <form class="bs-example bs-example-form" role="form">
+        <div id="collapseTitle" class="panel-collapse collapse">
+          <div class="row">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  手机号码：<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">历史留存</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">13717000000</a></li>
+                  <li><a href="#">13717000001</a></li>
+                  <li><a href="#">13717000002</a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <input type="text" class="form-control">
+            </div>
+            <!-- /input-group -->
+          </div>
+          <br />
+          <div class="row">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  出发时间：<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">请选择</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">2017-05-29 09:00</a></li>
+                  <li><a href="#">2017-05-30 09:00</a></li>
+                  <li><a href="#">2017-05-31 09:00</a></li>
+                  <li><a href="#">2017-06-01 09:00</a></li>
+                  <li><a href="#">2017-06-02 09:00</a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <input type="text" class="form-control">
+            </div>
+            <!-- /input-group -->
+          </div>
+          <br />
+          <div class="row">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  出发地：&emsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">安平</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">石家庄</a></li>
+                  <li><a href="#">北京</a></li>
+                  <li><a href="#">霸州</a></li>
+                  <li><a href="#">衡水</a></li>
+                  <li><a href="#">保定</a></li>
+                  <li><a href="#">天津</a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <input type="text" class="form-control">
+            </div>
+            <!-- /input-group -->
+          </div>
+          <br />
+          <div class="row">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  目的地：&emsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">石家庄</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">安平</a></li>
+                  <li><a href="#">北京</a></li>
+                  <li><a href="#">霸州</a></li>
+                  <li><a href="#">衡水</a></li>
+                  <li><a href="#">保定</a></li>
+                  <li><a href="#">天津</a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <input type="text" class="form-control">
+            </div>
+            <!-- /input-group -->
+          </div>
+          <br/>
+          <div class="row">
+            <button type="button" class="btn btn-success btn-lg btn-block form-control">约 ！</button>
+          </div>
+          <br/>
+          <br/>
+          <div class="row">
+            <button type="button" class="btn btn-primary btn-lg form-control">拨打客服：10086</button>
+          </div>
+          <br />
+        </div>
+        
+          <br/>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="row">
+            <input type="text" class="form-control" text="姓 名">
+          </div>
+          <br />
+          <div class="input-group">
+            <span class="input-group-addon">姓 名</span>
+            <input type="text" class="form-control" placeholder="twitterhandle">
+          </div>
+        
+
+
+
+
+
+
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          
+          <br/>
+          <div class="row">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default">按钮 7</button>
+              <button type="button" class="btn btn-default">按钮 8</button>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">手机号码：</button>
+                </span>
+                <input type="text" class="form-control">
+              </div>
+              <!-- /input-group -->
+            </div>
+            <!-- /.col-lg-6 -->
+          </div>
+          <br />
+          
+  <div style="padding: 100px 100px 10px;">
+    <form class="bs-example bs-example-form" role="form">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                下拉菜单 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">功能</a></li>
+                <li><a href="#">另一个功能</a></li>
+                <li><a href="#">其他</a></li>
+                <li class="divider"></li>
+                <li><a href="#">分离的链接</a></li>
+              </ul>
+            </div>
+            <!-- /btn-group -->
+            <input type="text" class="form-control">
+          </div>
+          <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-6 -->
+        <br>
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                下拉菜单 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="#">功能</a></li>
+                <li><a href="#">另一个功能</a></li>
+                <li><a href="#">其他</a></li>
+                <li class="divider"></li>
+                <li><a href="#">分离的链接</a></li>
+              </ul>
+            </div>
+            <!-- /btn-group -->
+          </div>
+          <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-6 -->
+      </div>
+      <!-- /.row -->
+    </form>
+  </div>
+
+
+
+
+
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAnpingYueche">安 平 约 车</a>
+      </h4>
+    </div>
+    <!-- <div id="collapseAnpingYueche" class="panel-collapse collapse in1"> -->
+    <div id="collapseAnpingYueche" class="panel-collapse collapse">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="min-width40">属性</th>
+            <th class="min-width40">值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenID</td>
+            <td th:text="${openId}"></td>
+          </tr>
+
+          <!-- 
+          <tr>
+            <td>OpenID</td>
+            <td th:text="${userInfo.openId}"></td>
+          </tr>
+          <tr>
+            <td>昵称</td>
+            <td th:text="${userInfo.nickName}"></td>
+          </tr>
+          <tr>
+            <td>性别</td>
+            <td th:text="${userInfo.sex}"></td>
+          </tr>
+          <tr>
+            <td>国家</td>
+            <td th:text="${userInfo.country}"></td>
+          </tr>
+          <tr>
+            <td>省份</td>
+            <td th:text="${userInfo.province}"></td>
+          </tr>
+          <tr>
+            <td>城市</td>
+            <td th:text="${userInfo.city}"></td>
+          </tr>
+          <tr>
+            <td>头像</td>
+            <td th:text="${userInfo.headImgUrl}"></td>
+          </tr>
+          
+          <tr>
+            <td>特权</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>state:</td>
+            <td th:text="${state}"></td>
+          </tr>
+          -->
+
+          <tr>
+            <td>addrFromList:</td>
+            <td th:text="${addrFromList}"></td>
+          </tr>
+          <tr>
+            <td>addrToList:</td>
+            <td th:text="${addrToList}"></td>
+          </tr>
+          <tr>
+            <td>serviceTel:</td>
+            <td th:text="${serviceTel}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <h3>学校/组织/团体</h3>
+  <form id='schoolForm' action="allhomeworks" method="POST">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">霍营小学</a>
+            <input type="hidden" th:id="selectedSchoolId" th:name="selectedSchoolId" th:value="defaulthuoying" />
+            <input type="hidden" th:id="selectedGradeId" th:name="selectedGradeId" th:value="defaultGradeId" />
+            <input type="hidden" th:id="selectedGradeClassId" th:name="selectedGradeClassId" th:value="defaultGradeClassId" />
+          </h4>
+        </div>
+        <div id="collapseOne2" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table id='tableSchools' class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th class="min-width40">年级</th>
+                  <th class="min-width40">班级</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:name=${clsStat.count} th:each="cls,clsStat : ${allGradeAndClasses}">
+                  <td th:text="${cls.grade}">一年级</td>
+                  <td th:text="${cls.gradeClass}">一班</td>
+                  <input type="hidden" th:id="${gradeId}" th:name="${gradeId}" th:value="${cls.gradeId}" />
+                  <input type="hidden" th:id="${gradeClassId}" th:name="${gradeClassId}" th:value="${cls.gradeClassId}" />
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 
+    以下为指定某天作业情况
+    <form id='schoolForm' action="onedayhomeworks" method="POST">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">霍营小学</a>
+            <input type="hidden" th:id="selectedSchoolId" th:name="selectedSchoolId" th:value="defaulthuoying" />
+            <input type="hidden" th:id="selectedGradeId" th:name="selectedGradeId" th:value="defaultGradeId" />
+            <input type="hidden" th:id="selectedGradeClassId" th:name="selectedGradeClassId" th:value="defaultGradeClassId" />
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table id='tableSchools' class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th class="min-width40">年级</th>
+                  <th class="min-width40">班级</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:name=${clsStat.count} th:each="cls,clsStat : ${allGradeAndClasses}">
+                  <td th:text="${cls.grade}">一年级</td>
+                  <td th:text="${cls.gradeClass}">一班</td>
+                  <input type="hidden" th:id=${"gradeId"} th:name=${"gradeId"} th:value="${cls.gradeId}" />
+                  <input type="hidden" th:id=${"gradeClassId"} th:name=${"gradeClassId"} th:value="${cls.gradeClassId}" />
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+    -->
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">通知/广播专用</a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse in1">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <td>
+                <div class="panel-body">放假3天：2016/12/26 ~ 2016/12/30</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="panel-body">期末考试：2017/1/6</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">报名/统计/反馈专用</a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <td>
+                <div class="panel-body">舞蹈兴趣班报名</div>
+            <tr>
+              <td>
+                <div class="panel-body">学习用具统计</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">美唐团体</a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <td>
+                <div class="panel-body">穷游1日</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="panel-body">组织滑雪2017/1/1</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+<script type="text/javascript">
+  //$(function () { $('#collapseTitle').collapse({
+  //  toggle: false
+  //})});
+  //$(function () { $('#collapseTitle').collapse('show')});
+  $(function () { $('#collapseTitle').collapse('toggle')});
+  //$(function () { $('#collapseTitle').collapse('hide')});
+</script>  
+</body>
+</html>
