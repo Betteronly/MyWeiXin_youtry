@@ -15,11 +15,6 @@ import com.anping.yueche.pojo.UserInfo;
 @Service
 public class YuecheServiceImpl implements YuecheService {
 
-    // @Autowired
-    // private HomeWorks homeWorks;
-
-    // @Resource
-    // private UserInfoDao userInfoDao;
     @Autowired
     private UserInfoDao userInfoDao;
 
