@@ -67,6 +67,22 @@ public class DBUtility {
     // e.printStackTrace();
     // System.out.println("创建连接池失败!请检查设置!!!");
     // }
+
+    /*
+     * 新浪官方连接方式
+     */
+    // String driver = "com.mysql.jdbc.Driver";
+    // String username = System.getenv("ACCESSKEY");
+    // String password = System.getenv("SECRETKEY");
+    // // System.getenv("MYSQL_HOST_S"); 为从库，只读
+    // String dbUrl = String.format("jdbc:mysql://%s:%s/%s", System.getenv("MYSQL_HOST"), System.getenv("MYSQL_PORT"), System.getenv("MYSQL_DB"));
+    // try {
+    // Class.forName(driver).newInstance();
+    // con = DriverManager.getConnection(dbUrl, username, password);
+    // // ...
+    // } catch (Exception e) {
+    // // ...
+    // }
     // }
     //
     // /**

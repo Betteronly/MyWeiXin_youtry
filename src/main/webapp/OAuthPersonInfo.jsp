@@ -37,6 +37,6 @@
     <br/>
     <br/>
     <br/>
-    <a href="index.jsp">跳转index</a>
+    <a href="/yueche/index">跳转 安平约车/yueche/index</a>
 </body>
 </html>

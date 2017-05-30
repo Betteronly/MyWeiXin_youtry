@@ -34,12 +34,11 @@ public class OAuthServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
-        log.info("request:[" + request.toString() + "]");
-        System.out.println("request:[" + request.toString() + "]");
-
         // 用户同意授权后，能获取到code
         String code = request.getParameter("code");
         String state = request.getParameter("state");
+        // TODO
+        String openId = "lirong";
 
         // 用户同意授权
         if (!"authdeny".equals(code)) {
@@ -48,15 +47,19 @@ public class OAuthServlet extends HttpServlet {
             // 网页授权接口访问凭证
             String accessToken = weixinOauth2Token.getAccessToken();
             // 用户标识
-            String openId = weixinOauth2Token.getOpenId();
+            openId = weixinOauth2Token.getOpenId();
             // 获取用户信息
             SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken, openId);
 
             // 设置要传递的参数
             request.setAttribute("snsUserInfo", snsUserInfo);
             request.setAttribute("state", state);
+
+            log.info("[### openId]:" + openId);
         }
+
         // 跳转到index.jsp
-        request.getRequestDispatcher("OAuthPersonInfo.jsp").forward(request, response);
+        // request.getRequestDispatcher("OAuthPersonInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("/yueche/index?openId=" + openId).forward(request, response);
     }
 }
