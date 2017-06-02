@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,15 @@ public class YuecheController {
         super();
     }
 
+    /**
+     * 约车首页显示
+     * 
+     * @param httpRequest
+     * @param model
+     * @param openId
+     * @param servletRequest
+     * @return
+     */
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String yuecheIndex(HttpServletRequest httpRequest, Model model, String openId, ServletRequest servletRequest) {
         String openId1 = openId; // 参数传入方式
@@ -44,5 +54,18 @@ public class YuecheController {
         // model.addAttribute("state", state);
 
         return "anping/yueche/index";
+    }
+
+    /**
+     * 约车首页、约车处理
+     * 
+     * @param orderInfo
+     * @return
+     */
+
+    @RequestMapping(value = { "/doorder" }, method = RequestMethod.POST)
+    public String doOrder(@RequestBody OrderInfo orderInfo) {
+
+        return "anping/yueche/done_order";
     }
 }

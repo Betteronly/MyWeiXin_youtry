@@ -17,6 +17,28 @@
 
 </head>
 <body>
+
+
+<script type="text/javascript">  
+    $(document).ready(function(){  
+        var saveDataAry=[];  
+        var data1={"userName":"test","address":"gz"};  
+        var data2={"userName":"ququ","address":"gr"};  
+        saveDataAry.push(data1);  
+        saveDataAry.push(data2);         
+        $.ajax({ 
+            type:"POST", 
+            url:"user/saveUser", 
+            dataType:"json",      
+            contentType:"application/json",               
+            data:JSON.stringify(saveData), 
+            success:function(data){ 
+                                       
+            } 
+         }); 
+    });  
+</script> 
+
   <div class="panel panel-success">
     <div class="panel-heading">
       <h4 class="panel-title text-center">
@@ -392,8 +414,6 @@
   </div>
 
 
-
-
   <script type="text/javascript">
 	  //$(function () { $('#collapseTitle').collapse({
 	  //  toggle: false
@@ -408,5 +428,7 @@
 	    });
 	 });
 </script>
+
+
 </body>
 </html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anping.yueche.dao.CarOrderInfoDao">
+  <select id="getUserInfo" parameterType="String" resultType="com.anping.yueche.pojo.CarOrderInfo">
+    select user_no as userNo
+          ,open_id as openId
+          ,addr_from as addrFrom
+          ,addr_to as addrTo
+          ,depart_time as departTime
+          ,order_phone as orderPhone
+          ,order_name as orderName
+     from car_order_info 
+    where open_id=#{openId}
+  </select>
+  
+ 
+</mapper>
