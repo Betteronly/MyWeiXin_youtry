@@ -18,26 +18,51 @@
 </head>
 <body>
 
+  <script type="text/javascript">
+            $(document).ready(function() {
+                /*  $("#btnOrderCar").click(function() {
+                     $.post("/yueche/orderCar", {
+                         "openId" : "lirongTest",
+                         "addrFrom" : "北京"
+                     }, function(data, status) {
+                         //alert("数据: \n" + data + "\n状态: " + status);
+                     });
+                 });
+                }); */
 
-<script type="text/javascript">  
-    $(document).ready(function(){  
-        var saveDataAry=[];  
-        var data1={"userName":"test","address":"gz"};  
-        var data2={"userName":"ququ","address":"gr"};  
-        saveDataAry.push(data1);  
-        saveDataAry.push(data2);         
-        $.ajax({ 
-            type:"POST", 
-            url:"user/saveUser", 
-            dataType:"json",      
-            contentType:"application/json",               
-            data:JSON.stringify(saveData), 
-            success:function(data){ 
-                                       
-            } 
-         }); 
-    });  
-</script> 
+                $("#btnOrderCar").click(function() {
+                    var saveDataAry = [];
+                    var data1 = {
+                        "openId" : "lirongTest",
+                        "addrFrom" : "北京"
+                    };
+                    saveDataAry.push(data1);
+                    /* var data2 = {
+                        "userName" : "ququ",
+                        "address" : "gr"
+                    };
+                    saveDataAry.push(data2);
+                    
+                    $.ajax({
+                        type : "POST",
+                        url : "/yueche/orderCar",
+                        dataType : "json",
+                        contentType : "application/json",
+                        data : JSON.stringify(data1),
+                        success : function(data) {
+                            location.href ="/yueche/index";
+                        }
+                    }); */
+                    //$("#orderPhone").val("1000000000000");
+                    // $("#departTime").val("2017/06/03 21:00:00");
+                    // $("#addrFrom").text("北京");
+                    // $("#addrTo").text("天津");
+                    //$("#frmOrderCar").attr("action","/yueche/orderCar");
+                    //$("#frmOrderCar").attr("method","POST");
+                    $("#frmOrderCar").submit();
+                });
+            });
+        </script>
 
   <div class="panel panel-success">
     <div class="panel-heading">
@@ -46,388 +71,73 @@
       </h4>
     </div>
 
-    <div style="padding: 20px 30px 30px;">
-      <form class="bs-example bs-example-form" role="form">
-        <div id="collapseTitle" class="panel-collapse collapse">
-          <div class="row">
-            <div class="input-group">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  手机号码：<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">历史留存</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">13717000000</a></li>
-                  <li><a href="#">13717000001</a></li>
-                  <li><a href="#">13717000002</a></li>
-                </ul>
-              </div>
-              <!-- /btn-group -->
-              <input type="text" class="form-control" placeholder="手机号码">
-            </div>
-            <!-- /input-group -->
-          </div>
-          <br />
-          <div class="row">
-            <div class="input-group">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  出发时间：<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">请选择</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">2017-05-29 09:00</a></li>
-                  <li><a href="#">2017-05-30 09:00</a></li>
-                  <li><a href="#">2017-05-31 09:00</a></li>
-                  <li><a href="#">2017-06-01 09:00</a></li>
-                  <li><a href="#">2017-06-02 09:00</a></li>
-                </ul>
-              </div>
-              <!-- /btn-group -->
-              <input type="text" class="form-control">
-            </div>
-            <!-- /input-group -->
-          </div>
-          <br />
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">出发地：&emsp;</button>
-              <button type="button" class="btn btn-success dropdown-toggle btn-lg" data-toggle="dropdown">
-                安平 <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">安平</a></li>
-                <li class="divider"></li>
-                <li><a href="#">石家庄</a></li>
-                <li><a href="#">北京</a></li>
-                <li><a href="#">霸州</a></li>
-                <li><a href="#">衡水</a></li>
-                <li><a href="#">保定</a></li>
-                <li><a href="#">天津</a></li>
-              </ul>
-            </div>
-          </div>
+    <form id="frmOrderCar" class="bs-example bs-example-form" role="form" method="POST" action=/yueche/orderCar>
+      <div style="padding: 20px 30px 30px;">
+        <br />
+        <input id="openId" name="openId" type="hidden" th:value="#{openId}"></input>
+        <div class="input-group row">
+          <span class="input-group-addon">手机号码：</span>
+          <input id="orderPhone" name="orderPhone" type="text" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>
         </div>
         <br />
-        <div class="input-group">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">目的地：&emsp;</button>
-            <button type="button" class="btn btn-success dropdown-toggle btn-lg" data-toggle="dropdown">
-              石家庄 <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">石家庄</a></li>
-              <li class="divider"></li>
-              <li><a href="#">安平</a></li>
-              <li><a href="#">北京</a></li>
-              <li><a href="#">霸州</a></li>
-              <li><a href="#">衡水</a></li>
-              <li><a href="#">保定</a></li>
-              <li><a href="#">天津</a></li>
-            </ul>
-          </div>
+        <br />
+        <div class="input-group row">
+          <span class="input-group-addon">出发时间：</span>
+          <select id="departTime" name="departTime" class="btn-success form-control">
+            <option th:each="item : ${departTimeList}" th:value="${item.key}" th:text="${item.value}">9999/99/99 99:99</option>
+          </select>
         </div>
-    </div>
-
-    <br /> <br />
-    <div class="row">
-      <button type="button" class="btn btn-success btn-lg btn-block form-control">约 ！</button>
-    </div>
-    <br /> <br />
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-lg form-control">拨打客服：10086</button>
-    </div>
-    <br />
-  </div>
-
-  <br />
-  </form>
-  </div>
-  </div>
-
-
-  <br />
-  <div class="form-group">
-    <label class="col-sm-3 control-label">客资类型：</label>
-    <div class="col-sm-4">
-      <select id="usertype" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false">
-        <option value="0">苹果</option>
-        <option value="1">菠萝</option>
-        <option value="2">香蕉</option>
-        <option value="3">火龙果</option>
-        <option value="4">梨子</option>
-        <option value="5">草莓</option>
-        <option value="6">哈密瓜</option>
-        <option value="7">椰子</option>
-        <option value="8">猕猴桃</option>
-        <option value="9">桃子</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">出发地：&emsp;</button>
-    <div class="btn-group btn-block">
-      <button type="button" class="btn btn-success dropdown-toggle btn-lg btn-block" data-toggle="dropdown">
-        安平 <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu btn-block" role="menu">
-        <li><a href="#">安平</a></li>
-        <li class="divider"></li>
-        <li><a href="#">石家庄</a></li>
-        <li><a href="#">北京</a></li>
-        <li><a href="#">霸州</a></li>
-        <li><a href="#">衡水</a></li>
-        <li><a href="#">保定</a></li>
-        <li><a href="#">天津</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div>
-    <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          出发地：&emsp;<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="#">安平</a></li>
-          <li class="divider"></li>
-          <li><a href="#">石家庄</a></li>
-          <li><a href="#">北京</a></li>
-          <li><a href="#">霸州</a></li>
-          <li><a href="#">衡水</a></li>
-          <li><a href="#">保定</a></li>
-          <li><a href="#">天津</a></li>
-        </ul>
-      </div>
-      <!-- /btn-group -->
-      <input type="text" class="form-control" placeholder="安平">
-    </div>
-    <!-- /input-group -->
-  </div>
-
-
-  <div class="row">
-    <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          目的地：&emsp;<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="#">石家庄</a></li>
-          <li class="divider"></li>
-          <li><a href="#">安平</a></li>
-          <li><a href="#">北京</a></li>
-          <li><a href="#">霸州</a></li>
-          <li><a href="#">衡水</a></li>
-          <li><a href="#">保定</a></li>
-          <li><a href="#">天津</a></li>
-        </ul>
-      </div>
-      <!-- /btn-group -->
-      <input type="text" class="form-control" placeholder="石家庄">
-    </div>
-    <!-- /input-group -->
-  </div>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <div class="btn-group btn-block">
-    <button type="button" class="btn btn-success dropdown-toggle btn-lg btn-block" data-toggle="dropdown">
-      成功 <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu btn-block" role="menu">
-      <li><a href="#">功能</a></li>
-      <li><a href="#">另一个功能</a></li>
-      <li><a href="#">其他</a></li>
-      <li class="divider"></li>
-      <li><a href="#">分离的链接</a></li>
-    </ul>
-  </div>
-
-
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-
-  <br />
-  <div class="row">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default">按钮 7</button>
-      <button type="button" class="btn btn-default">按钮 8</button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">手机号码：</button>
-        </span> <input type="text" class="form-control">
-      </div>
-      <!-- /input-group -->
-    </div>
-    <!-- /.col-lg-6 -->
-  </div>
-  <br />
-
-  <div style="padding: 100px 100px 10px;">
-    <form class="bs-example bs-example-form" role="form">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                下拉菜单 <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="#">功能</a></li>
-                <li><a href="#">另一个功能</a></li>
-                <li><a href="#">其他</a></li>
-                <li class="divider"></li>
-                <li><a href="#">分离的链接</a></li>
-              </ul>
-            </div>
-            <!-- /btn-group -->
-            <input type="text" class="form-control">
-          </div>
-          <!-- /input-group -->
+        <br />
+        <br />
+        <div class="input-group row">
+          <span class="input-group-addon">出发地：&emsp;</span>
+          <select id="addrFrom" name="addrFrom" class="btn-success dropdown-toggle form-control">
+            <option th:each="item : ${addrFromList}" th:value="${item.key}" th:text="${item.value}">安平</option>
+          </select>
         </div>
-        <!-- /.col-lg-6 -->
-        <br>
-        <div class="col-lg-6">
-          <div class="input-group">
-            <input type="text" class="form-control">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                下拉菜单 <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu pull-right">
-                <li><a href="#">功能</a></li>
-                <li><a href="#">另一个功能</a></li>
-                <li><a href="#">其他</a></li>
-                <li class="divider"></li>
-                <li><a href="#">分离的链接</a></li>
-              </ul>
-            </div>
-            <!-- /btn-group -->
-          </div>
-          <!-- /input-group -->
+        <br />
+        <br />
+        <div class="input-group row">
+          <span class="input-group-addon">目的地：&emsp;</span>
+          <select id="addrTo" name="addrTo" class="btn-success dropdown-toggle form-control">
+            <option th:each="item : ${addrToList}" th:value="${item.key}" th:text="${item.value}">北京</option>
+          </select>
         </div>
-        <!-- /.col-lg-6 -->
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class=" row">
+          <button id="btnOrderCar" type="button" class="btn-success form-control">约 ！</button>
+          <br />
+          <br />
+          <button id="btnCallService" type="button" class="btn-primary form-control">
+            <a class="btn-primary" href="tel:10086">拨打客服：10086</a>
+          </button>
+          <br />
+          <br />
+        </div>
       </div>
-      <!-- /.row -->
     </form>
   </div>
 
 
-
-
-
-
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAnpingYueche">安 平 约 车</a>
-      </h4>
-    </div>
-    <!-- <div id="collapseAnpingYueche" class="panel-collapse collapse in1"> -->
-    <div id="collapseAnpingYueche" class="panel-collapse collapse">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th class="min-width40">属性</th>
-            <th class="min-width40">值</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>OpenID</td>
-            <td th:text="${openId}"></td>
-          </tr>
-
-          <!-- 
-          <tr>
-            <td>OpenID</td>
-            <td th:text="${userInfo.openId}"></td>
-          </tr>
-          <tr>
-            <td>昵称</td>
-            <td th:text="${userInfo.nickName}"></td>
-          </tr>
-          <tr>
-            <td>性别</td>
-            <td th:text="${userInfo.sex}"></td>
-          </tr>
-          <tr>
-            <td>国家</td>
-            <td th:text="${userInfo.country}"></td>
-          </tr>
-          <tr>
-            <td>省份</td>
-            <td th:text="${userInfo.province}"></td>
-          </tr>
-          <tr>
-            <td>城市</td>
-            <td th:text="${userInfo.city}"></td>
-          </tr>
-          <tr>
-            <td>头像</td>
-            <td th:text="${userInfo.headImgUrl}"></td>
-          </tr>
-          
-          <tr>
-            <td>特权</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>state:</td>
-            <td th:text="${state}"></td>
-          </tr>
-          -->
-
-          <tr>
-            <td>addrFromList:</td>
-            <td th:text="${addrFromList}"></td>
-          </tr>
-          <tr>
-            <td>addrToList:</td>
-            <td th:text="${addrToList}"></td>
-          </tr>
-          <tr>
-            <td>serviceTel:</td>
-            <td th:text="${serviceTel}"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-
   <script type="text/javascript">
-	  //$(function () { $('#collapseTitle').collapse({
-	  //  toggle: false
-	  //})});
-	  //$(function () { $('#collapseTitle').collapse('show')});
-	  $(function () { $('#collapseTitle').collapse('toggle')});
-	  //$(function () { $('#collapseTitle').collapse('hide')});
-  
-	  $(window).on('load', function () {
-	    $('#usertype').selectpicker({
-	        'selectedText': 'cat'
-	    });
-	 });
-</script>
+            //$(function () { $('#collapseTitle').collapse({
+            //  toggle: false
+            //})});
+            //$(function () { $('#collapseTitle').collapse('show')});
+            $(function() {
+                $('#collapseTitle').collapse('toggle')
+            });
+            //$(function () { $('#collapseTitle').collapse('hide')});
+
+            //$(window).on('load', function() {
+            //     $('#usertype').selectpicker({
+            //         'selectedText' : 'cat'
+            //     });
+            //  });
+        </script>
 
 
 </body>
