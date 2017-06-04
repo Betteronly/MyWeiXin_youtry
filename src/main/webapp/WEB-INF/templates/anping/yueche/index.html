@@ -1,143 +1,153 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<!-- <meta charset="UTF-8"> -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta charset="UTF-8"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>安 平 约 车</title>
+    <title>安 平 约 车</title>
 
-<!-- 引入 Bootstrap -->
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
-<link rel="stylesheet" type="text/css" href="../../css/teachtools.css" th:href="@{/css/teachtools.css}">
-<script type="text/javascript" src="../../js/teachtools.js" th:src="@{/js/teachtools.js}"></script>
-<script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-<script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+
+<!--
+    <link rel="stylesheet" type="text/css" href="../../css/teachtools.css" th:href="@{/css/teachtools.css}">
+    <script type="text/javascript" src="../../js/teachtools.js" th:src="@{/js/teachtools.js}"></script>
+-->
+
+    <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+    <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
 
 </head>
 <body>
 
-  <script type="text/javascript">
-            $(document).ready(function() {
-                /*  $("#btnOrderCar").click(function() {
-                     $.post("/yueche/orderCar", {
-                         "openId" : "lirongTest",
-                         "addrFrom" : "北京"
-                     }, function(data, status) {
-                         //alert("数据: \n" + data + "\n状态: " + status);
-                     });
-                 });
-                }); */
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*  $("#btnOrderCar").click(function() {
+         $.post("/yueche/orderCar", {
+         "openId" : "lirongTest",
+         "addrFrom" : "北京"
+         }, function(data, status) {
+         //alert("数据: \n" + data + "\n状态: " + status);
+         });
+         });
+         }); */
 
-                $("#btnOrderCar").click(function() {
-                    var saveDataAry = [];
-                    var data1 = {
-                        "openId" : "lirongTest",
-                        "addrFrom" : "北京"
-                    };
-                    saveDataAry.push(data1);
-                    /* var data2 = {
-                        "userName" : "ququ",
-                        "address" : "gr"
-                    };
-                    saveDataAry.push(data2);
-                    
-                    $.ajax({
-                        type : "POST",
-                        url : "/yueche/orderCar",
-                        dataType : "json",
-                        contentType : "application/json",
-                        data : JSON.stringify(data1),
-                        success : function(data) {
-                            location.href ="/yueche/index";
-                        }
-                    }); */
-                    //$("#orderPhone").val("1000000000000");
-                    // $("#departTime").val("2017/06/03 21:00:00");
-                    // $("#addrFrom").text("北京");
-                    // $("#addrTo").text("天津");
-                    //$("#frmOrderCar").attr("action","/yueche/orderCar");
-                    //$("#frmOrderCar").attr("method","POST");
-                    $("#frmOrderCar").submit();
-                });
-            });
-        </script>
+        $("#btnOrderCar").click(function () {
+            var saveDataAry = [];
+            var data1 = {
+                "openId": "lirongTest",
+                "addrFrom": "北京"
+            };
+            saveDataAry.push(data1);
+            /* var data2 = {
+             "userName" : "ququ",
+             "address" : "gr"
+             };
+             saveDataAry.push(data2);
 
-  <div class="panel panel-success">
+             $.ajax({
+             type : "POST",
+             url : "/yueche/orderCar",
+             dataType : "json",
+             contentType : "application/json",
+             data : JSON.stringify(data1),
+             success : function(data) {
+             location.href ="/yueche/index";
+             }
+             }); */
+            //$("#orderPhone").val("1000000000000");
+            // $("#departTime").val("2017/06/03 21:00:00");
+            // $("#addrFrom").text("北京");
+            // $("#addrTo").text("天津");
+            //$("#frmOrderCar").attr("action","/yueche/orderCar");
+            //$("#frmOrderCar").attr("method","POST");
+            $("#frmOrderCar").submit();
+        });
+    });
+</script>
+
+<div class="panel panel-success">
     <div class="panel-heading">
-      <h4 class="panel-title text-center">
-        <a data-toggle="collapse" data-parent="#accordion" href="#">安 平 约 车</a>
-      </h4>
+        <h4 class="panel-title text-center">
+            <a data-toggle="collapse" data-parent="#accordion" href="#">安 平 约 车</a>
+        </h4>
     </div>
 
     <form id="frmOrderCar" class="bs-example bs-example-form" role="form" method="POST" action=/yueche/orderCar>
-      <div style="padding: 20px 30px 30px;">
-        <br />
-        <input id="openId" name="openId" type="hidden" th:value="#{openId}"></input>
-        <div class="input-group row">
-          <span class="input-group-addon">手机号码：</span>
-          <input id="orderPhone" name="orderPhone" type="text" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>
+        <div style="padding: 20px 30px 30px;">
+            <br/>
+            <input id="openId" name="openId" type="hidden" th:value="#{openId}"></input>
+            <div class="input-group row">
+                <span class="input-group-addon">手机号码：</span>
+                <input id="orderPhone" name="orderPhone" type="text" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>
+            </div>
+            <br/>
+            <br/>
+            <div class="input-group row">
+                <span class="input-group-addon">出发时间：</span>
+                <select id="departTime" name="departTime" class="btn-success form-control">
+                    <option th:each="item : ${departTimeList}" th:value="${item.key}" th:text="${item.value}">9999/99/99 99:99</option>
+                </select>
+            </div>
+            <br/>
+            <br/>
+            <div class="input-group row">
+                <span class="input-group-addon">出发地：&emsp;</span>
+                <select id="addrFrom" name="addrFrom" class="btn-success dropdown-toggle form-control">
+                    <option th:each="item : ${addrFromList}" th:value="${item.key}" th:text="${item.value}">安平</option>
+                </select>
+            </div>
+            <br/>
+            <br/>
+            <div class="input-group row">
+                <span class="input-group-addon">目的地：&emsp;</span>
+                <select id="addrTo" name="addrTo" class="btn-success dropdown-toggle form-control">
+                    <option th:each="item : ${addrToList}" th:value="${item.key}" th:text="${item.value}">北京</option>
+                </select>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class=" row">
+                <button id="btnOrderCar" type="button" class="btn-success form-control">约 ！</button>
+                <br/>
+                <br/>
+                <button id="btnCallService" type="button" class="btn-primary form-control">
+                    <a class="btn-primary" href="tel:10086">拨打客服：10086</a>
+                </button>
+                <br/>
+                <button onclick="callphone()">10086</button>
+                <br/>
+                <br/>
+            </div>
         </div>
-        <br />
-        <br />
-        <div class="input-group row">
-          <span class="input-group-addon">出发时间：</span>
-          <select id="departTime" name="departTime" class="btn-success form-control">
-            <option th:each="item : ${departTimeList}" th:value="${item.key}" th:text="${item.value}">9999/99/99 99:99</option>
-          </select>
-        </div>
-        <br />
-        <br />
-        <div class="input-group row">
-          <span class="input-group-addon">出发地：&emsp;</span>
-          <select id="addrFrom" name="addrFrom" class="btn-success dropdown-toggle form-control">
-            <option th:each="item : ${addrFromList}" th:value="${item.key}" th:text="${item.value}">安平</option>
-          </select>
-        </div>
-        <br />
-        <br />
-        <div class="input-group row">
-          <span class="input-group-addon">目的地：&emsp;</span>
-          <select id="addrTo" name="addrTo" class="btn-success dropdown-toggle form-control">
-            <option th:each="item : ${addrToList}" th:value="${item.key}" th:text="${item.value}">北京</option>
-          </select>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class=" row">
-          <button id="btnOrderCar" type="button" class="btn-success form-control">约 ！</button>
-          <br />
-          <br />
-          <button id="btnCallService" type="button" class="btn-primary form-control">
-            <a class="btn-primary" href="tel:10086">拨打客服：10086</a>
-          </button>
-          <br />
-          <br />
-        </div>
-      </div>
     </form>
-  </div>
+</div>
 
 
-  <script type="text/javascript">
-            //$(function () { $('#collapseTitle').collapse({
-            //  toggle: false
-            //})});
-            //$(function () { $('#collapseTitle').collapse('show')});
-            $(function() {
-                $('#collapseTitle').collapse('toggle')
-            });
-            //$(function () { $('#collapseTitle').collapse('hide')});
+<script type="text/javascript">
+    function callphone() {
+        window.location.href = "tel:10086";
+    }
 
-            //$(window).on('load', function() {
-            //     $('#usertype').selectpicker({
-            //         'selectedText' : 'cat'
-            //     });
-            //  });
-        </script>
+    //$(function () { $('#collapseTitle').collapse({
+    //  toggle: false
+    //})});
+    //$(function () { $('#collapseTitle').collapse('show')});
+    $(function () {
+        $('#collapseTitle').collapse('toggle')
+    });
+    //$(function () { $('#collapseTitle').collapse('hide')});
+
+    //$(window).on('load', function() {
+    //     $('#usertype').selectpicker({
+    //         'selectedText' : 'cat'
+    //     });
+    //  });
+</script>
 
 
 </body>
