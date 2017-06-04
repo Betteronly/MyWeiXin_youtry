@@ -41,14 +41,22 @@
     <div style="padding: 20px 30px 30px;">
       <br />
       <br />
-      <div id="myAlert" class="alert alert-success">
-        <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>成功！</strong>您的预约成功提交。
-      </div>
-      <br />
-      <div id="myAlert" class="alert alert-warning">
-        <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>失败！</strong>网络有问题、请直接拨打客服电话！
-      </div>
-      <br />
+      <span th:if="${carOderStatus == 'OK'}">
+        <div id="myAlert" class="alert alert-success">
+          <br />
+          <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>成功！</strong>您的预约成功提交。
+          <br />
+        </div>
+        <br />
+      </span>
+      <span th:if="${carOderStatus == 'NG'}">
+        <div id="myAlert" class="alert alert-warning">
+          <br />
+          <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>失败！</strong>网络有问题、请直接拨打客服电话！
+          <br />
+        </div>
+        <br />
+      </span>
       <br />
       <br />
       <br />

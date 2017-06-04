@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anping.yueche.dao.CodeDicDao">
+  <select id="getCodeDicList" parameterType="String" resultType="com.anping.yueche.pojo.CodeDic">
+    select c.code_id as codeId
+        ,c.code_name as codeName
+        ,c.key
+        ,c.value
+        ,c.order
+    from code_dic c
+    where code_id = #{codeId}
+    order by c.order
+  </select>
+
+</mapper>

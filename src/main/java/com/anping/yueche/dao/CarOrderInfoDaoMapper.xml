@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anping.yueche.dao.CarOrderInfoDao">
+  <select id="selectCarOrderInfo" parameterType="String" resultType="com.anping.yueche.pojo.CarOrderInfo">
+    select user_no as userNo
+    ,open_id as openId
+    ,addr_from as addrFrom
+    ,addr_to as addrTo
+    ,depart_time as departTime
+    ,order_phone as orderPhone
+    ,order_name as orderName
+    from car_order_info
+    where open_id = #{openId}
+  </select>
+
+  <insert id="insertCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo">
+    insert into car_order_info
+      (user_no
+      ,open_id
+      ,addr_from
+      ,addr_to
+      ,depart_time
+      ,order_phone
+      ,order_name
+      ,order_time
+      ,order_status
+      ,data_state
+      ) 
+    values 
+      (#{userNo}
+      ,#{openId}
+      ,#{addrFrom}
+      ,#{addrTo}
+      ,#{departTime}
+      ,#{orderPhone}
+      ,#{orderName}
+      ,now()
+      ,#{orderStatus}
+      ,#{dataState}
+      )
+  </insert>
+  
+<!--
+    <insert id="add" parameterType="EStudent" useGeneratedKeys="true" keyProperty="id">
+    insert into TStudent(name, age) values(#{name}, #{age})
+    </insert>
+  -->
+</mapper>

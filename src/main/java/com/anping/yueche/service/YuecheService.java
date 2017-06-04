@@ -1,5 +1,6 @@
 package com.anping.yueche.service;
 
+import com.anping.yueche.pojo.CarOrderInfo;
 import com.anping.yueche.pojo.UserInfo;
 
 public interface YuecheService {
@@ -16,14 +17,15 @@ public interface YuecheService {
      * 
      * @return
      */
-    public String saveUserInfo();
+    public int saveUserInfo();
 
     /**
      * 约车
      * 
+     * @param carOrderInfo
      * @return
      */
-    public String doOrderCar();
+    public boolean doOrderCar(CarOrderInfo carOrderInfo);
 
     /**
      * 查询约车记录

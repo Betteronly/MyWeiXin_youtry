@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anping.yueche.dao.UserInfoDao">
-  <select id="getUserInfo" parameterType="String" resultType="com.anping.yueche.pojo.UserInfo">
+  <select id="selectUserInfo" parameterType="String" resultType="com.anping.yueche.pojo.UserInfo">
     select user_no as userNo
           ,open_id as openId
           ,nick_name as nickName
