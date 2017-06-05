@@ -27,7 +27,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
     <!-- Test -->
-    <junit.version>4.11</junit.version>
+    <junit.version>4.12</junit.version>
     <!-- ??? -->
     <spring-jpa.version>1.8.0.RELEASE</spring-jpa.version>
     <guava.version>16.0.1</guava.version>
@@ -227,8 +227,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.2</version>
-      <scope>${junit.version}</scope>
+      <version>${junit.version}</version>
     </dependency>
 
     <!-- 其他未整理 -->
