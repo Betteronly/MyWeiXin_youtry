@@ -28,7 +28,7 @@ CREATE TABLE `car_order_info` (
   `order_phone` varchar(20) DEFAULT NULL,
   `order_name` varchar(255) DEFAULT NULL,
   `order_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `order_status` varchar(1) DEFAULT NULL,
+  `order_status` varchar(2) DEFAULT NULL,
   `data_state` varchar(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -90,7 +90,7 @@ CREATE TABLE `user_info` (
   `country` varchar(255) DEFAULT NULL,
   `province` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
-  `head_Img_Url` varchar(1000) DEFAULT NULL,
+  `head_img_url` varchar(1000) DEFAULT NULL,
   `privilege_List` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,

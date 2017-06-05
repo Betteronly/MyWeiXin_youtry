@@ -5,10 +5,17 @@
     select user_no as userNo
           ,open_id as openId
           ,nick_name as nickName
-          ,id as id
+          ,sex
+          ,country
+          ,province
+          ,city
+          ,head_img_url as headImgUrl
+          ,privilege_list as privilegeList
           ,name
           ,phone
           ,addr
+          ,id
+          ,create_time as createTime
      from user_info 
     where open_id=#{openId}
   </select>

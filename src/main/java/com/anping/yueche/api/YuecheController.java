@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -60,6 +61,24 @@ public class YuecheController {
         UserInfo userInfo = yuecheService.getUserInfo(openId);
 
         model.addAttribute("openId", openId);
+        // 客户NO
+        if (userInfo != null) {
+            model.addAttribute("userNo", userInfo.getUserNo());
+        } else {
+            model.addAttribute("userNo", "");
+        }
+        // 客户昵称
+        if (userInfo != null) {
+            model.addAttribute("nickName", userInfo.getNickName());
+        } else {
+            model.addAttribute("nickName", "");
+        }
+        // 客户姓名
+        if (userInfo != null) {
+            model.addAttribute("name", userInfo.getName());
+        } else {
+            model.addAttribute("name", "");
+        }
         // 客户手机号码
         if (userInfo != null) {
             model.addAttribute("orderPhone", userInfo.getPhone());
@@ -91,13 +110,27 @@ public class YuecheController {
      * @return
      */
     @RequestMapping(value = { "/orderCar" }, method = RequestMethod.POST)
-    public String orderCar(CarOrderInfo carOrderInfo, Model model) {
+    public String orderCar(CarOrderInfo carOrderInfo, UserInfo userInfo, Model model) {
         // 00：用户预约成功、10：客服确认成功、11：客服确认失败
         carOrderInfo.setOrderStatus("00");
         // 0：有效、1：无效
         carOrderInfo.setDataState("0");
+        // 约车用户名
+        if (!StringUtils.isEmpty(userInfo.getName())) {
+            carOrderInfo.setOrderName(userInfo.getName());
+        } else {
+            if (!StringUtils.isEmpty(userInfo.getNickName())) {
+                carOrderInfo.setOrderName(userInfo.getNickName());
+            } else {
+                carOrderInfo.setOrderName("");
+            }
+        }
+
         // 约车
         boolean ret = yuecheService.doOrderCar(carOrderInfo);
+
+        model.addAttribute("openId", carOrderInfo.getOpenId());
+
         if (ret) {
             model.addAttribute("carOderStatus", "OK");
         } else {

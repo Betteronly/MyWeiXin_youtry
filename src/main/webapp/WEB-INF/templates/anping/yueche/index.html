@@ -82,7 +82,10 @@
     <form id="frmOrderCar" class="bs-example bs-example-form" role="form" method="POST" action=/yueche/orderCar>
       <div style="padding: 20px 30px 30px;">
         <br />
-        <input id="openId" name="openId" type="hidden" th:value="#{openId}"></input>
+        <input id="userNo" name="userNo" type="hidden" th:value="${userNo}"></input>
+        <input id="openId" name="openId" type="hidden" th:value="${openId}"></input>
+        <input id="nickName" name="nickName" type="hidden" th:value="${nickName}"></input>
+        <input id="name" name="name" type="hidden" th:value="${name}"></input>
         <div class="input-group row">
           <span class="input-group-addon">手机号码：</span>
           <input id="orderPhone" name="orderPhone" type="text" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>

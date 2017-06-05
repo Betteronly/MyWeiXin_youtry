@@ -45,7 +45,7 @@ public class YuecheServiceImpl implements YuecheService {
                 ret = true;
             }
         } catch (Exception e) {
-            log.info("约车信息插入处理失败！" + e.getStackTrace());
+            log.info("约车信息插入处理失败！" + e);
         }
         return ret;
     }
