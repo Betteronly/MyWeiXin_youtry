@@ -1,6 +1,6 @@
 package com.anping.yueche.utils;
 
-public class CommonConstant {
+public class CommonConstants {
 
     // 出发地列表
     public static final String ADDR_FROM_LIST = "ADDR_FROM_LIST";

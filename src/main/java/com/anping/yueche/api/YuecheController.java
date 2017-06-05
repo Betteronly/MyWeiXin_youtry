@@ -1,8 +1,8 @@
 package com.anping.yueche.api;
 
-import static com.anping.yueche.utils.CommonConstant.ADDR_FROM_LIST;
-import static com.anping.yueche.utils.CommonConstant.ADDR_TO_LIST;
-import static com.anping.yueche.utils.CommonConstant.DEPART_TIME_LIST;
+import static com.anping.yueche.utils.CommonConstants.ADDR_FROM_LIST;
+import static com.anping.yueche.utils.CommonConstants.ADDR_TO_LIST;
+import static com.anping.yueche.utils.CommonConstants.DEPART_TIME_LIST;
 
 import java.util.List;
 
