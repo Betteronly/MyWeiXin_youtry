@@ -4,7 +4,27 @@
     http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <display-name>youtry</display-name>
-  
+
+  <!--解决提交内容乱码 在web.xml添加过滤器 START-->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!--解决提交内容乱码 在web.xml添加过滤器 E N D-->
+
+
   <!-- 微信公众相关 -->
   <servlet>
     <servlet-name>coreServlet</servlet-name>
@@ -48,4 +68,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+
+
 </web-app>
