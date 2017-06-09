@@ -1,9 +1,5 @@
 package com.anping.yueche.api;
 
-import static com.anping.yueche.utils.CommonConstants.ADDR_FROM_LIST;
-import static com.anping.yueche.utils.CommonConstants.ADDR_TO_LIST;
-import static com.anping.yueche.utils.CommonConstants.DEPART_TIME_LIST;
-
 import java.util.List;
 
 import javax.servlet.ServletRequest;
@@ -23,6 +19,8 @@ import com.anping.yueche.pojo.CarOrderInfo;
 import com.anping.yueche.pojo.UserInfo;
 import com.anping.yueche.service.CommonService;
 import com.anping.yueche.service.YuecheService;
+
+import static com.anping.yueche.utils.CommonConstants.*;
 
 @Controller
 @RequestMapping("/yueche")
@@ -85,15 +83,18 @@ public class YuecheController {
         } else {
             model.addAttribute("orderPhone", "");
         }
-
+        // 出发地
         List<CodeItem> addrFromList = commonService.getCodeItemList(ADDR_FROM_LIST);
         model.addAttribute("addrFromList", addrFromList);
-
+        // 目的地
         List<CodeItem> addrToList = commonService.getCodeItemList(ADDR_TO_LIST);
         model.addAttribute("addrToList", addrToList);
 
         // model.addAttribute("anpingServiceTel", "10086");
-
+        // 出发日期
+        List<CodeItem> departDateList = commonService.getCodeItemList(DEPART_DATE_LIST);
+        model.addAttribute("departDateList", departDateList);
+        // 出发时刻
         List<CodeItem> departTimeList = commonService.getCodeItemList(DEPART_TIME_LIST);
         model.addAttribute("departTimeList", departTimeList);
 
@@ -105,8 +106,9 @@ public class YuecheController {
 
     /**
      * 约车首页、约车处理
-     * 
-     * @param orderInfo
+     * @param carOrderInfo
+     * @param userInfo
+     * @param model
      * @return
      */
     @RequestMapping(value = { "/orderCar" }, method = RequestMethod.POST)
