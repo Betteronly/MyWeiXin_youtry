@@ -1,7 +1,8 @@
 package com.anping.yueche.pojo;
 
 public class CarOrderInfo {
-    private String userNo;
+	private String carOrderId;
+	private String userNo;
     private String openId;
     private String addrFrom;
     private String addrTo;
@@ -11,7 +12,13 @@ public class CarOrderInfo {
     private String orderTime;
     private String orderStatus;
     private String dataState;
-    
+
+	public String getCarOrderId() {
+		return carOrderId;
+	}
+	public void setCarOrderId(String carOrderId) {
+		this.carOrderId = carOrderId;
+	}
 	public String getUserNo() {
 		return userNo;
 	}

@@ -10,5 +10,7 @@ public class CommonConstants {
     public static final String DEPART_DATE_LIST = "DEPART_DATE_LIST";
     // 出发时刻
     public static final String DEPART_TIME_LIST = "DEPART_TIME_LIST";
+    // 预约状态
+    public static final String ORDER_STATUS = "order_status";
 
 }

@@ -310,6 +310,16 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-        </resources>
-    </build>
-</project>
+          <!--
+             <resource>
+                 <directory>src/main/resources</directory>
+                 <includes>
+                     <include>**/*.properties</include>
+                     <include>**/*.xml</include>
+                 </includes>
+                 <filtering>false</filtering>
+             </resource>
+          -->
+         </resources>
+     </build>
+ </project>

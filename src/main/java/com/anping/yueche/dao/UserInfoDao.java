@@ -1,8 +1,9 @@
 package com.anping.yueche.dao;
 
+import com.anping.yueche.pojo.UserInfo;
 import org.mybatis.spring.annotation.MapperScan;
 
-import com.anping.yueche.pojo.UserInfo;
+import java.util.List;
 
 /**
  * 用户信息
@@ -12,9 +13,9 @@ import com.anping.yueche.pojo.UserInfo;
  */
 @MapperScan
 public interface UserInfoDao {
-    public UserInfo selectUserInfo(String openId);
+    public List<UserInfo> selectUserInfo(UserInfo userInfo);
 
-    public boolean insertUserInfo(UserInfo userInfo);
+    public int insertUserInfo(UserInfo userInfo);
 
-    public boolean updateUserInfo(UserInfo userInfo);
+    public int updateUserInfo(UserInfo userInfo);
 }

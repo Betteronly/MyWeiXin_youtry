@@ -3,6 +3,8 @@ package com.anping.yueche.service;
 import com.anping.yueche.pojo.CarOrderInfo;
 import com.anping.yueche.pojo.UserInfo;
 
+import java.util.List;
+
 public interface YuecheService {
 
     /**
@@ -17,7 +19,14 @@ public interface YuecheService {
      * 
      * @return
      */
-    public int saveUserInfo();
+    public int saveUserInfo(UserInfo userInfo);
+
+    /**
+     * 编辑更新用户信息
+     *
+     * @return
+     */
+    public int editUserInfo(UserInfo userInfo);
 
     /**
      * 约车
@@ -32,6 +41,19 @@ public interface YuecheService {
      * 
      * @return
      */
-    public String selectOrderCarRec();
+    public List<CarOrderInfo> getCarOrderInfo(CarOrderInfo carOrderInfo);
 
+    /**
+     * 保存约车信息
+     *
+     * @return
+     */
+    public int saveCarOrderInfo(CarOrderInfo carOrderInfo);
+
+    /**
+     * 编辑约车信息
+     *
+     * @return
+     */
+    public int editCarOrderInfo(CarOrderInfo carOrderInfo);
 }

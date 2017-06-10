@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>安 平 约 车 管 理</title>
+
+  <!-- 引入 Bootstrap -->
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+        th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+  <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js"
+          th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+  <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js"
+          th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+</head>
+<body>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h4 class="panel-title text-center">
+      <a data-toggle="collapse" data-parent="#accordion" href="#">安 平 约 车 信 息 管 理</a>
+    </h4>
+  </div>
+
+  <form id="frmCarOrderManage" class="bs-example bs-example-form" role="form" method="POST"
+        action=/yueche/manage/orderCarInfo>
+    <div style="padding: 10px 10px 10px;">
+
+      <table class="table table-bordered table-striped">
+        <tbody>
+        <tr th:each="carOrderInfo : ${carOrderInfoList}" class="success1 active1 warning1 danger1">
+          <td>
+            <span class="text-warning">手机号码:&emsp; </span>
+            <span class="text-danger" th:text="${carOrderInfo.orderPhone}"></span>
+            <br />
+            <span class="text-warning">出发时间:&emsp; </span>
+            <span class="text-danger" th:text="${carOrderInfo.departTime}"></span>
+            <br />
+            <span class="text-warning">&emsp;出发地:&emsp; </span>
+            <span class="text-danger" th:text="${carOrderInfo.addrFrom}"></span>
+            <br />
+            <span class="text-warning">&emsp;目的地:&emsp; </span>
+            <span class="text-danger" th:text="${carOrderInfo.addrTo}"></span>
+            <br />
+            <span class="text-warning">预约时间:&emsp; </span>
+            <span class="text-muted" th:text="${carOrderInfo.orderTime}"></span>
+          </td>
+          <td>
+            <strong><span th:id="${'orderStatus' + carOrderInfo.carOrderId}" class="text-danger" th:text="${carOrderInfo.orderStatus}"></span></strong>
+            <br/>
+            <span th:if="${carOrderInfo.orderStatus} == '待确认'">
+              <button type="button" class="text-success" th:id="btnOrderInfoOK" th:value="${carOrderInfo.carOrderId}">订单确认</button>
+              <br/>
+            </span>
+            <!--
+            <span th:if="${carOrderInfo.orderStatus} == '待出发'">
+              <button type="button" class="text-success" th:id="btnOrderFinish" th:value="${carOrderInfo.carOrderId}">订单完成</button>
+              <br/>
+            </span>
+            -->
+            <span th:if="${carOrderInfo.orderStatus} != '订单作废' and ${carOrderInfo.orderStatus} != '订单取消' and ${carOrderInfo.orderStatus} != '订单完成'">
+              <button type="button" class="text-success" th:id="btnOrderFinish" th:value="${carOrderInfo.carOrderId}">订单完成</button>
+              <br/>
+              <button type="button" class="text-danger" th:id="btnOrderDelete" th:value="${carOrderInfo.carOrderId}">订单作废</button>
+            </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnCallService").click(function () {
+            window.location.href = "tel:10086";
+        });
+
+        $("#btnOrderCar").click(function () {
+//            var saveDataAry = [];
+//            var data1 = {
+//                "openId": "lirongTest",
+//                "addrFrom": "北京"
+//            };
+//            saveDataAry.push(data1);
+
+            if ($("#orderPhone").val() == null || $("#orderPhone").val() == "") {
+                $('#orderPhone').popover({placement: 'bottom'});
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", "请输入...");
+                $("#orderPhone").focus();
+            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
+                $('#orderPhone').val("");
+                $("#orderPhone").focus();
+            } else {
+                $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
+                $("#frmOrderCar").submit();
+            }
+
+        });
+
+        $("#btnOrderInfoOK").click(function () {
+            var data = {
+                "oprateType": "OrderInfoOK",
+                "carOrderId": $("#btnOrderInfoOK").val()
+            };
+            $.ajax({
+                type : "GET",
+                url : "/yuecheApi/manageapi/orderInfoStatus",
+                dataType : "json",
+                contentType : "application/json",
+                data : JSON.stringify(data),
+                success : function(data) {
+                    $("#orderStatus").text("待出发");
+                  }
+            });
+        });
+        $("#btnOrderFinish").click(function () {
+        });
+        $("#btnOrderDelete").click(function () {
+        });
+    });
+</script>
+
+</body>
+</html>

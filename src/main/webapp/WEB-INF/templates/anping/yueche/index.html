@@ -21,58 +21,6 @@
 
 </head>
 <body>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        /*  $("#btnOrderCar").click(function() {
-         $.post("/yueche/orderCar", {
-         "openId" : "lirongTest",
-         "addrFrom" : "北京"
-         }, function(data, status) {
-         //alert("数据: \n" + data + "\n状态: " + status);
-         });
-         });
-         }); */
-
-        $("#btnCallService").click(function() {
-            window.location.href = "tel:10086";
-        });
-
-        $("#btnOrderCar").click(function() {
-            var saveDataAry = [];
-            var data1 = {
-                "openId" : "lirongTest",
-                "addrFrom" : "北京"
-            };
-            saveDataAry.push(data1);
-            /*
-             var data2 = {
-             "userName" : "ququ",
-             "address" : "gr"
-             };
-             saveDataAry.push(data2);
-
-             $.ajax({
-             type : "POST",
-             url : "/yueche/orderCar",
-             dataType : "json",
-             contentType : "application/json",
-             data : JSON.stringify(data1),
-             success : function(data) {
-             location.href ="/yueche/index";
-             }
-             });
-            */
-            // $("#addrFrom").text("北京");
-            //$("#frmOrderCar").attr("action","/yueche/orderCar");
-            //$("#frmOrderCar").attr("method","POST");
-
-            $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
-            $("#frmOrderCar").submit();
-        });
-    });
-</script>
-
 <div class="panel panel-success">
     <div class="panel-heading">
         <h4 class="panel-title text-center">
@@ -134,12 +82,75 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        /*  $("#btnOrderCar").click(function() {
+         $.post("/yueche/orderCar", {
+         "openId" : "lirongTest",
+         "addrFrom" : "北京"
+         }, function(data, status) {
+         //alert("数据: \n" + data + "\n状态: " + status);
+         });
+         });
+         }); */
+
+        $("#btnCallService").click(function() {
+            window.location.href = "tel:10086";
+        });
+
+        $("#btnOrderCar").click(function() {
+            var saveDataAry = [];
+            var data1 = {
+                "openId" : "lirongTest",
+                "addrFrom" : "北京"
+            };
+            saveDataAry.push(data1);
+            /*
+             var data2 = {
+             "userName" : "ququ",
+             "address" : "gr"
+             };
+             saveDataAry.push(data2);
+
+             $.ajax({
+             type : "POST",
+             url : "/yueche/orderCar",
+             dataType : "json",
+             contentType : "application/json",
+             data : JSON.stringify(data1),
+             success : function(data) {
+             location.href ="/yueche/index";
+             }
+             });
+             */
+            // $("#addrFrom").text("北京");
+            //$("#frmOrderCar").attr("action","/yueche/orderCar");
+            //$("#frmOrderCar").attr("method","POST");
+
+            if($("#orderPhone").val() == null || $("#orderPhone").val() == "" ) {
+                $('#orderPhone').popover({placement:'bottom'});
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", "请输入...");
+                $("#orderPhone").focus();
+            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
+                $('#orderPhone').val("");
+                $("#orderPhone").focus();
+            } else {
+                $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
+                $("#frmOrderCar").submit();
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
     //$(function () { $('#collapseTitle').collapse({
     //  toggle: false
     //})});
     //$(function () { $('#collapseTitle').collapse('show')});
     $(function() {
-        $('#collapseTitle').collapse('toggle')
+        $('#collapseTitle').collapse('toggle');
     });
     //$(function () { $('#collapseTitle').collapse('hide')});
 

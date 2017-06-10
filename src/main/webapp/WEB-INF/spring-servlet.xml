@@ -21,6 +21,7 @@
   <!-- User @Controller, @Service... annotations -->
   <!-- **************************************************************** -->
   <context:component-scan base-package="com.anping.yueche" />
+  <context:component-scan base-package="com.youtry" />
   <!-- 数据源配置 -->
   <import resource="classpath:datasource.xml" />
   <!-- <import resource="classpath:codelist.xml" /> -->

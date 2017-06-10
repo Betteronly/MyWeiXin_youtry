@@ -1,14 +1,15 @@
 package com.anping.yueche.service;
 
+import com.anping.yueche.dao.CarOrderInfoDao;
+import com.anping.yueche.dao.UserInfoDao;
+import com.anping.yueche.pojo.CarOrderInfo;
+import com.anping.yueche.pojo.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.anping.yueche.dao.CarOrderInfoDao;
-import com.anping.yueche.dao.UserInfoDao;
-import com.anping.yueche.pojo.CarOrderInfo;
-import com.anping.yueche.pojo.UserInfo;
+import java.util.List;
 
 @Service
 public class YuecheServiceImpl implements YuecheService {
@@ -22,17 +23,26 @@ public class YuecheServiceImpl implements YuecheService {
 
     @Override
     public UserInfo getUserInfo(String openId) {
-        UserInfo userInfo = null;
+        UserInfo userInfoParam = new UserInfo();
         if (openId != null) {
-            userInfo = userInfoDao.selectUserInfo(openId);
+            userInfoParam.setOpenId(openId);
+            List<UserInfo> userInfoList = userInfoDao.selectUserInfo(userInfoParam);
+            if (userInfoList != null && userInfoList.size() > 0){
+                userInfoParam = userInfoList.get(0);
+            }
         }
-        return userInfo;
+
+        return userInfoParam;
     }
 
     @Override
-    public int saveUserInfo() {
-        // TODO Auto-generated method stub
-        return 0;
+    public int saveUserInfo(UserInfo userInfo) {
+        return userInfoDao.insertUserInfo(userInfo);
+    }
+
+    @Override
+    public int editUserInfo(UserInfo userInfo) {
+        return userInfoDao.updateUserInfo(userInfo);
     }
 
     @Override
@@ -51,9 +61,17 @@ public class YuecheServiceImpl implements YuecheService {
     }
 
     @Override
-    public String selectOrderCarRec() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<CarOrderInfo> getCarOrderInfo(CarOrderInfo carOrderInfo) {
+        return carOrderInfoDao.selectCarOrderInfo(carOrderInfo);
     }
 
+    @Override
+    public int saveCarOrderInfo(CarOrderInfo carOrderInfo){
+        return carOrderInfoDao.insertCarOrderInfo(carOrderInfo);
+    }
+
+    @Override
+    public int editCarOrderInfo(CarOrderInfo carOrderInfo){
+        return carOrderInfoDao.updateCarOrderInfo(carOrderInfo);
+    }
 }

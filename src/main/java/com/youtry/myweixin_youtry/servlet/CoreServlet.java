@@ -1,15 +1,14 @@
 package com.youtry.myweixin_youtry.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.youtry.myweixin_youtry.service.CoreService;
+import com.youtry.myweixin_youtry.util.SignUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.youtry.myweixin_youtry.service.CoreService;
-import com.youtry.myweixin_youtry.util.SignUtil;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 类名: CoreServlet </br>
@@ -19,7 +18,6 @@ import com.youtry.myweixin_youtry.util.SignUtil;
  * 发布版本：V1.0 </br>
  */
 public class CoreServlet extends HttpServlet {
-
     private static final long serialVersionUID = 4323197796926899691L;
 
     /**
@@ -27,7 +25,6 @@ public class CoreServlet extends HttpServlet {
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // 微信加密签名
         String signature = request.getParameter("signature");
         // 时间戳

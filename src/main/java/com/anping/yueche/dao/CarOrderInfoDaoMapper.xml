@@ -2,17 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anping.yueche.dao.CarOrderInfoDao">
   <select id="selectCarOrderInfo" parameterType="String" resultType="com.anping.yueche.pojo.CarOrderInfo">
-    select user_no as userNo
-    ,open_id as openId
-    ,addr_from as addrFrom
-    ,addr_to as addrTo
-    ,depart_time as departTime
-    ,order_phone as orderPhone
-    ,order_name as orderName
+    select
+       car_order_id as carOrderId
+      ,user_no as userNo
+      ,open_id as openId
+      ,addr_from as addrFrom
+      ,addr_to as addrTo
+      ,substr(depart_Time, 6, 11) as departTime
+      ,order_phone as orderPhone
+      ,order_name as orderName
+      ,substr(order_time, 6, 11) as orderTime
+      ,order_status as orderStatus
+      ,data_state as dataState
     from car_order_info
-    where open_id = #{openId}
+    where
+      1 = 1
+      <if test="carOrderId != null">
+        and car_order_id = #{carOrderId}
+      </if>
+      <if test="openId != null">
+        and open_id = #{openId}
+      </if>
+      <if test="orderStatus != null">
+        and order_status = #{orderStatus}
+      </if>
+      and data_state = '0'
   </select>
 
+  <!--
+      <insert id="add" parameterType="EStudent" useGeneratedKeys="true" keyProperty="id">
+      insert into TStudent(name, age) values(#{name}, #{age})
+      </insert>
+    -->
   <insert id="insertCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo">
     insert into car_order_info
       (user_no
@@ -39,10 +60,47 @@
       ,#{dataState}
       )
   </insert>
-  
-<!--
-    <insert id="add" parameterType="EStudent" useGeneratedKeys="true" keyProperty="id">
-    insert into TStudent(name, age) values(#{name}, #{age})
-    </insert>
-  -->
+
+  <update id="updateCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo">
+    update car_order_info
+    set
+      <if test="carOrderId != null">
+        car_order_id       = #{carOrderId}
+      </if>
+      <if test="userNo != null">
+       ,user_no            = #{userNo}
+      </if>
+      <if test="openId != null">
+        ,open_id           = #{openId}
+      </if>
+      <if test="addrFrom != null">
+        ,addr_from         = #{addrFrom}
+      </if>
+      <if test="addrTo != null">
+        ,addr_to           = #{addrTo}
+      </if>
+      <if test="departTime != null">
+        ,depart_time       = #{departTime}
+      </if>
+      <if test="orderPhone != null">
+        ,order_phone       = #{orderPhone}
+      </if>
+      <if test="orderName != null">
+        ,order_name        = #{orderName}
+      </if>
+      <if test="orderTime != null">
+        ,order_time        = #{orderTime}
+      </if>
+      <if test="orderStatus != null">
+        ,order_status      = #{orderStatus}
+      </if>
+      <if test="dataState != null">
+        ,data_state        = #{dataState}
+      </if>
+    where
+      1 = 1
+      <if test="carOrderId != null">
+        and car_order_id = #{carOrderId}
+      </if>
+  </update>
 </mapper>

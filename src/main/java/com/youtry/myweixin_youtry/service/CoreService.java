@@ -1,14 +1,20 @@
 package com.youtry.myweixin_youtry.service;
 
-import java.util.Date;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.anping.yueche.pojo.UserInfo;
+import com.anping.yueche.service.YuecheService;
 import com.youtry.myweixin_youtry.message.resp.TextMessage;
 import com.youtry.myweixin_youtry.pojo.WeixinUserInfo;
 import com.youtry.myweixin_youtry.util.CommonUtil;
 import com.youtry.myweixin_youtry.util.MessageUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * 类名: CoreService </br>
@@ -17,7 +23,22 @@ import com.youtry.myweixin_youtry.util.MessageUtil;
  * 创建时间： 2015-9-30 </br>
  * 发布版本：V1.0 </br>
  */
+@Component
 public class CoreService {
+    private static Logger log = LoggerFactory.getLogger(CoreService.class);
+
+    @Autowired
+    public YuecheService yuecheService;
+    // 静态类注入
+    private static CoreService coreService;
+
+    // 静态类注入
+    @PostConstruct
+    public void init() {
+        coreService = this;
+        coreService.yuecheService = this.yuecheService;
+    }
+
     /**
      * 处理微信发来的请求
      * 
@@ -129,6 +150,9 @@ public class CoreService {
                     respContent = "感谢您的对话，我们获取了您的如下信息：\n" + "纬度:" + latitude + "\n经度:" + longitude + "\nOpenID：" + user.getOpenId() + "\n关注状态：" + user.getSubscribe() + "\n关注时间："
                             + user.getSubscribeTime() + "\n昵称：" + user.getNickname() + "\n性别：" + user.getSex() + "\n国家：" + user.getCountry() + "\n省份：" + user.getProvince() + "\n城市：" + user.getCity()
                             + "\n语言：" + user.getLanguage() + "\n头像：" + user.getHeadImgUrl();
+
+                    // 用户关注时保存用户信息
+                    saveUser(user);
                 }
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
@@ -143,5 +167,29 @@ public class CoreService {
             e.printStackTrace();
         }
         return respXml;
+    }
+
+    /**
+     * 用户关注时保存用户信息
+     * @param user
+     */
+    private static void saveUser(WeixinUserInfo user){
+        log.debug("用户信息保存开始：" + user.toString());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setOpenId(user.getOpenId());
+        userInfo.setNickName(user.getNickname());
+        userInfo.setSex(user.getSex());
+        userInfo.setCountry(user.getCountry());
+        userInfo.setProvince(user.getProvince());
+        userInfo.setHeadImgUrl(user.getHeadImgUrl());
+
+        // 该OPEN_ID用户已存在判断
+        UserInfo oldUserInfo = coreService.yuecheService.getUserInfo(user.getOpenId());
+        if (oldUserInfo == null) {
+            coreService.yuecheService.saveUserInfo(userInfo);
+        } else {
+            coreService.yuecheService.editUserInfo(userInfo);
+        }
+        log.debug("用户信息保存结束：");
     }
 }

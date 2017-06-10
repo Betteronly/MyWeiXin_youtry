@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.anping.yueche.dao.UserInfoDao">
-  <select id="selectUserInfo" parameterType="String" resultType="com.anping.yueche.pojo.UserInfo">
+  <select id="selectUserInfo" parameterType="com.anping.yueche.pojo.UserInfo" resultType="com.anping.yueche.pojo.UserInfo">
     select user_no as userNo
           ,open_id as openId
           ,nick_name as nickName
@@ -17,7 +18,99 @@
           ,id
           ,create_time as createTime
      from user_info 
-    where open_id=#{openId}
+    where
+      1 = 1
+      <if test="openId != null">
+        and open_id = #{openId}
+      </if>
   </select>
-  
+
+  <insert id="insertUserInfo" parameterType="com.anping.yueche.pojo.UserInfo">
+    insert into user_info
+          (open_id
+          ,nick_name
+          ,sex
+          ,country
+          ,province
+          ,city
+          ,head_img_url
+          ,privilege_list
+          ,name
+          ,phone
+          ,addr
+          ,id
+          ,create_time
+          )
+    values
+          (#{openId}
+          ,#{nickName}
+          ,#{sex}
+          ,#{country}
+          ,#{province}
+          ,#{city}
+          ,#{headImgUrl}
+          ,''
+          ,#{name}
+          ,#{phone}
+          ,#{addr}
+          ,#{id}
+          ,now()
+          )
+  </insert>
+
+  <update id="updateUserInfo" parameterType="com.anping.yueche.pojo.UserInfo">
+    update user_info
+    set
+      1 = 1
+      <if test="userNo != null">
+        ,user_no          = #{userNo}
+      </if>
+      <if test="openId != null">
+        ,open_id          = #{openId}
+      </if>
+      <if test="nickName != null">
+        ,nick_name        = #{nickName}
+      </if>
+      <if test="sex != null">
+        ,sex              = #{sex}
+      </if>
+      <if test="country != null">
+        ,country          = #{country}
+      </if>
+      <if test="province != null">
+        ,province         = #{province}
+      </if>
+      <if test="city != null">
+        ,city             = #{city}
+      </if>
+      <if test="headImgUrl != null">
+        ,head_img_url     = #{headImgUrl}
+      </if>
+
+        ,privilege_list   = ''
+
+      <if test="name != null">
+        ,name             = #{name}
+      </if>
+      <if test="phone != null">
+        ,phone            = #{phone}
+      </if>
+      <if test="addr != null">
+        ,addr             = #{addr}
+      </if>
+      <if test="id != null">
+        ,id               = #{id}
+      </if>
+
+        ,create_time      = now()
+    where
+    1 = 1
+    <if test="userNo != null">
+      and user_no = #{userNo}
+    </if>
+    <if test="openId != null">
+      and open_id = #{openId}
+    </if>
+  </update>
+
 </mapper>

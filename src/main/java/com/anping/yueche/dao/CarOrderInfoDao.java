@@ -1,10 +1,9 @@
 package com.anping.yueche.dao;
 
-import java.util.List;
-
+import com.anping.yueche.pojo.CarOrderInfo;
 import org.mybatis.spring.annotation.MapperScan;
 
-import com.anping.yueche.pojo.CarOrderInfo;
+import java.util.List;
 
 /**
  * 约车信息
@@ -14,7 +13,7 @@ import com.anping.yueche.pojo.CarOrderInfo;
  */
 @MapperScan
 public interface CarOrderInfoDao {
-    public List<CarOrderInfo> selectCarOrderInfo(String open_id);
+    public List<CarOrderInfo> selectCarOrderInfo(CarOrderInfo carOrderInfo);
 
     public int insertCarOrderInfo(CarOrderInfo carOrderInfo);
 
