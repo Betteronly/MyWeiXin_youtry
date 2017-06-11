@@ -37,7 +37,7 @@
             <input id="departTime" name="departTime" type="hidden"></input>
             <div class="input-group row">
                 <span class="input-group-addon">手机号码：</span>
-                <input id="orderPhone" name="orderPhone" type="text" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>
+                <input id="orderPhone" name="orderPhone" type="tel" class="form-control" placeholder="请输入..." th:value="${orderPhone}"></input>
             </div>
             <br />
             <br />
@@ -72,7 +72,7 @@
             <br />
             <br />
             <div class=" row">
-                <button id="btnOrderCar" type="button" class="btn-success form-control">约 ！</button>
+                <button id="btnDoOrderCar" type="button" class="btn-success form-control">约 ！</button>
                 <br />
                 <button id="btnCallService" type="button" class="btn-primary form-control">拨打客服：10086</button>
             </div>
@@ -97,13 +97,28 @@
             window.location.href = "tel:10086";
         });
 
-        $("#btnOrderCar").click(function() {
-            var saveDataAry = [];
-            var data1 = {
-                "openId" : "lirongTest",
-                "addrFrom" : "北京"
-            };
-            saveDataAry.push(data1);
+        $("#btnDoOrderCar").click(function() {
+            if($("#orderPhone").val() == null || $("#orderPhone").val() == "" ) {
+                $('#orderPhone').popover({placement:'bottom'});
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", "请输入...");
+                $("#orderPhone").focus();
+            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
+                $('#orderPhone').css("background", "#ebccd1");
+                $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
+                $('#orderPhone').val("");
+                $("#orderPhone").focus();
+            } else {
+                $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
+                $("#frmOrderCar").submit();
+            }
+
+//            var saveDataAry = [];
+//            var data1 = {
+//                "openId" : "lirongTest",
+//                "addrFrom" : "北京"
+//            };
+//            saveDataAry.push(data1);
             /*
              var data2 = {
              "userName" : "ququ",
@@ -126,20 +141,6 @@
             //$("#frmOrderCar").attr("action","/yueche/orderCar");
             //$("#frmOrderCar").attr("method","POST");
 
-            if($("#orderPhone").val() == null || $("#orderPhone").val() == "" ) {
-                $('#orderPhone').popover({placement:'bottom'});
-                $('#orderPhone').css("background", "#ebccd1");
-                $('#orderPhone').attr("placeholder", "请输入...");
-                $("#orderPhone").focus();
-            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
-                $('#orderPhone').css("background", "#ebccd1");
-                $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
-                $('#orderPhone').val("");
-                $("#orderPhone").focus();
-            } else {
-                $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
-                $("#frmOrderCar").submit();
-            }
         });
     });
 </script>

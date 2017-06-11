@@ -1,11 +1,11 @@
 package com.anping.yueche.pojo;
 
 public class CodeDic {
-    String codeId;
-    String codeName;
-    String key;
-    String value;
-    String order;
+    private String codeId;
+    private String codeName;
+    private String key;
+    private String value;
+    private String order;
 
     public String getCodeId() {
         return codeId;

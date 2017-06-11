@@ -24,7 +24,7 @@
         and open_id = #{openId}
       </if>
       <if test="orderStatus != null">
-        and order_status = #{orderStatus}
+        and order_status in ( ${orderStatus} )
       </if>
       and data_state = '0'
   </select>
@@ -99,8 +99,8 @@
       </if>
     where
       1 = 1
-      <if test="carOrderId != null">
+      <!--<if test="carOrderId != null">-->
         and car_order_id = #{carOrderId}
-      </if>
+      <!--</if>-->
   </update>
 </mapper>

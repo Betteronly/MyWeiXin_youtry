@@ -127,7 +127,7 @@ public class YuecheController {
     @RequestMapping(value = { "/orderCar" }, method = RequestMethod.POST)
     public String orderCar(CarOrderInfo carOrderInfo, UserInfo userInfo, Model model) {
         // 00：用户预约成功、10：客服确认成功、11：客服确认失败
-        carOrderInfo.setOrderStatus("预约中");
+        carOrderInfo.setOrderStatus("待确认");
         // 0：有效、1：无效
         carOrderInfo.setDataState("0");
         // 约车用户名
@@ -153,7 +153,7 @@ public class YuecheController {
         }
 
         // return "anping/yueche/ordercar_confirm";
-        return "anping/yueche/ordercar_finish";
+        return "anping/yueche/order_finish";
     }
 
 
@@ -163,15 +163,34 @@ public class YuecheController {
      * @return
      */
     @RequestMapping(value = { "/manage/orderCarInfo" }, method = RequestMethod.GET)
-    public String orderInfoManage(Model model,String oprateType, String carOrderId) {
+    public String orderInfoManage(Model model, String selectedOrderStatusList) {
         // 预约状态
+        CarOrderInfo carOrderInfo = new CarOrderInfo();
+        if (selectedOrderStatusList == null){
+            carOrderInfo.setOrderStatus("'待确认','待出发'"); //初始化
+        } else if ("".equals(selectedOrderStatusList)){
+            carOrderInfo.setOrderStatus(null); //全量检索
+        } else {
+            carOrderInfo.setOrderStatus(selectedOrderStatusList);
+        }
+
+        List<CarOrderInfo> carOrderInfoList = yuecheService.getCarOrderInfo(carOrderInfo);
+        model.addAttribute("carOrderInfoList", carOrderInfoList);
+
         List<CodeItem> orderStatusList = commonService.getCodeItemList(ORDER_STATUS);
         model.addAttribute("orderStatusList", orderStatusList);
 
-        CarOrderInfo carOrderInfo = new CarOrderInfo();
-//        carOrderInfo.setOrderStatus("待确认"); // 待确认
-        List<CarOrderInfo> carOrderInfoList = yuecheService.getCarOrderInfo(carOrderInfo);
-        model.addAttribute("carOrderInfoList", carOrderInfoList);
+        if (selectedOrderStatusList == null) {
+            // 状态选择框 选择状态保持
+            model.addAttribute("chkbxOrderStatusWaitConfirm", true);
+            model.addAttribute("chkbxOrderStatusWaitDepart", true);
+        } else {
+            // 状态选择框 选择状态保持
+            model.addAttribute("chkbxOrderStatusWaitConfirm", selectedOrderStatusList.contains("待确认") ? true : false);
+            model.addAttribute("chkbxOrderStatusWaitDepart", selectedOrderStatusList.contains("待出发") ? true : false);
+            model.addAttribute("chkbxOrderStatusFinish", selectedOrderStatusList.contains("订单完成") ? true : false);
+            model.addAttribute("chkbxOrderStatusDelete", selectedOrderStatusList.contains("订单作废") ? true : false);
+        }
 
         return "anping/yueche/order_info_manage";
     }

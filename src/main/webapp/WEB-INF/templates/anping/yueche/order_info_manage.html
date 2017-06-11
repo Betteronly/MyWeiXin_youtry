@@ -9,14 +9,16 @@
   <title>安 平 约 车 管 理</title>
 
   <!-- 引入 Bootstrap -->
-  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
-        th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
-  <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js"
-          th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-  <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js"
-          th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/bootstrap-switch/css/bootstrap3/bootstrap-switch.css}">
+
+  <script type="text/javascript" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+  <script type="text/javascript" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <script type="text/javascript" th:src="@{/bootstrap-switch/js/bootstrap-switch.js}"></script>
+
 </head>
 <body>
+
 <div class="panel panel-warning">
   <div class="panel-heading">
     <h4 class="panel-title text-center">
@@ -24,26 +26,58 @@
     </h4>
   </div>
 
-  <form id="frmCarOrderManage" class="bs-example bs-example-form" role="form" method="POST"
-        action=/yueche/manage/orderCarInfo>
+  <form id="frmCarOrderManage" class="bs-example bs-example-form" role="form" method="" action=/yueche/manage/orderCarInfo>
     <div style="padding: 10px 10px 10px;">
+      <div class="row center-block text-center">
+        <span class="text-danger">&emsp;待确认:&emsp; </span>
+        <div class="bootstrap-switch bootstrap-switch-mini">
+          <input type="checkbox" id="chkbxOrderStatusWaitConfirm" th:checked="${chkbxOrderStatusWaitConfirm}">
+        </div>
+      </div>
+      <div class="row center-block text-center">
+        <span class="text-danger">&emsp;待出发:&emsp; </span>
+        <div class="bootstrap-switch bootstrap-switch-mini">
+          <input type="checkbox" id="chkbxOrderStatusWaitDepart" th:checked="${chkbxOrderStatusWaitDepart}">
+        </div>
+      </div>
+      <div class="row center-block text-center">
+        <span class="text-danger">订单完成:&emsp; </span>
+        <div class="bootstrap-switch bootstrap-switch-mini">
+          <input type="checkbox" id="chkbxOrderStatusFinish" th:checked="${chkbxOrderStatusFinish}">
+        </div>
+      </div>
+      <div class="row center-block text-center">
+        <span class="text-danger">订单作废:&emsp; </span>
+        <div class="bootstrap-switch bootstrap-switch-mini">
+          <input type="checkbox" id="chkbxOrderStatusDelete" th:checked="${chkbxOrderStatusDelete}">
+        </div>
+      </div>
+      <br/>
+      <div class="row center-block text-center">
+        <button id="btnSearch" type="button" class="btn btn-warning btn-sm btn-block">检索</button>
+        <input id="selectedOrderStatusList" name="selectedOrderStatusList" type="hidden"></input>
+      </div>
+      <br/>
 
       <table class="table table-bordered table-striped">
         <tbody>
         <tr th:each="carOrderInfo : ${carOrderInfoList}" class="success1 active1 warning1 danger1">
+          <td class="text-center">
+            <strong><span class="text-danger" th:text="${carOrderInfo.carOrderId}"></span></strong>
+          </td>
           <td>
             <span class="text-warning">手机号码:&emsp; </span>
             <span class="text-danger" th:text="${carOrderInfo.orderPhone}"></span>
-            <br />
+            <br/>
             <span class="text-warning">出发时间:&emsp; </span>
             <span class="text-danger" th:text="${carOrderInfo.departTime}"></span>
-            <br />
+            <br/>
             <span class="text-warning">&emsp;出发地:&emsp; </span>
             <span class="text-danger" th:text="${carOrderInfo.addrFrom}"></span>
-            <br />
+            <br/>
             <span class="text-warning">&emsp;目的地:&emsp; </span>
             <span class="text-danger" th:text="${carOrderInfo.addrTo}"></span>
-            <br />
+            <br/>
             <span class="text-warning">预约时间:&emsp; </span>
             <span class="text-muted" th:text="${carOrderInfo.orderTime}"></span>
           </td>
@@ -51,19 +85,13 @@
             <strong><span th:id="${'orderStatus' + carOrderInfo.carOrderId}" class="text-danger" th:text="${carOrderInfo.orderStatus}"></span></strong>
             <br/>
             <span th:if="${carOrderInfo.orderStatus} == '待确认'">
-              <button type="button" class="text-success" th:id="btnOrderInfoOK" th:value="${carOrderInfo.carOrderId}">订单确认</button>
+              <button type="button" class="btn btn-warning btn-sm" th:id="${'btnOrderInfoOK_' + carOrderInfo.carOrderId}" th:value="${carOrderInfo.carOrderId}">订单确认</button>
               <br/>
             </span>
-            <!--
-            <span th:if="${carOrderInfo.orderStatus} == '待出发'">
-              <button type="button" class="text-success" th:id="btnOrderFinish" th:value="${carOrderInfo.carOrderId}">订单完成</button>
-              <br/>
-            </span>
-            -->
             <span th:if="${carOrderInfo.orderStatus} != '订单作废' and ${carOrderInfo.orderStatus} != '订单取消' and ${carOrderInfo.orderStatus} != '订单完成'">
-              <button type="button" class="text-success" th:id="btnOrderFinish" th:value="${carOrderInfo.carOrderId}">订单完成</button>
+              <button type="button" class="btn btn-success btn-sm" th:id="${'btnOrderFinish_' + carOrderInfo.carOrderId}" th:value="${carOrderInfo.carOrderId}">订单完成</button>
               <br/>
-              <button type="button" class="text-danger" th:id="btnOrderDelete" th:value="${carOrderInfo.carOrderId}">订单作废</button>
+              <button type="button" class="btn btn-danger btn-sm" th:id="${'btnOrderDelete_' + carOrderInfo.carOrderId}" th:value="${carOrderInfo.carOrderId}">订单作废</button>
             </span>
           </td>
         </tr>
@@ -75,55 +103,71 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnCallService").click(function () {
-            window.location.href = "tel:10086";
+        // 开关按钮插件
+        $("#chkbxOrderStatusWaitConfirm").bootstrapSwitch();
+        $("#chkbxOrderStatusWaitDepart").bootstrapSwitch();
+        $("#chkbxOrderStatusFinish").bootstrapSwitch();
+        $("#chkbxOrderStatusDelete").bootstrapSwitch();
+
+
+        $("#btnSearch").click(function () {
+            str = "";
+            if($("#chkbxOrderStatusWaitConfirm").is(':checked')){
+                str = str + ",'待确认'";
+            };
+            if($("#chkbxOrderStatusWaitDepart").is(':checked')){
+                str = str + ",'待出发'";
+            };
+            if($("#chkbxOrderStatusFinish").is(':checked')){
+                str = str + ",'订单完成'";
+            };
+            if($("#chkbxOrderStatusDelete").is(':checked')){
+                str = str + ",'订单作废'";
+            };
+            str = str + " ";
+            $("#selectedOrderStatusList").val(str.substr(1));
+            $("#frmCarOrderManage").submit();
         });
 
-        $("#btnOrderCar").click(function () {
-//            var saveDataAry = [];
-//            var data1 = {
-//                "openId": "lirongTest",
-//                "addrFrom": "北京"
-//            };
-//            saveDataAry.push(data1);
-
-            if ($("#orderPhone").val() == null || $("#orderPhone").val() == "") {
-                $('#orderPhone').popover({placement: 'bottom'});
-                $('#orderPhone').css("background", "#ebccd1");
-                $('#orderPhone').attr("placeholder", "请输入...");
-                $("#orderPhone").focus();
-            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
-                $('#orderPhone').css("background", "#ebccd1");
-                $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
-                $('#orderPhone').val("");
-                $("#orderPhone").focus();
-            } else {
-                $("#departTime").val($("#departDateList").val() + " " + $("#departTimeList").val());
-                $("#frmOrderCar").submit();
-            }
-
+        // 所有 订单确认btnOrderInfoOK、订单完成btnOrderFinish、订单作废btnOrderDelete 按钮
+        $("button[id^='btnOrder']").click(function () {
+            oprateOrderStatus(this);
         });
 
-        $("#btnOrderInfoOK").click(function () {
+        /**
+         * 订单状态更改
+         * @param btnObj 按钮对象本身
+         */
+        function oprateOrderStatus(btnObj) {
+            btnType = btnObj.id.split("_")[0];  // btnId format:  btnOrderXXXX_99(btnType_99)
             var data = {
-                "oprateType": "OrderInfoOK",
-                "carOrderId": $("#btnOrderInfoOK").val()
+                "oprateType": btnType,
+                "carOrderId": btnObj.value,
+                "orderStatus": $("#orderStatus" + btnObj.value).html()
             };
             $.ajax({
-                type : "GET",
-                url : "/yuecheApi/manageapi/orderInfoStatus",
-                dataType : "json",
-                contentType : "application/json",
-                data : JSON.stringify(data),
-                success : function(data) {
-                    $("#orderStatus").text("待出发");
-                  }
+                type: "POST",
+                url: "/yuecheApi/manageapi/orderInfoStatus",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data) {
+                    $("#orderStatus" + btnObj.value).html(data.orderStatus);
+                    // 禁用按钮
+//                $("#" + btnObj.id).addClass("disabled");
+                    $("#" + btnObj.id).removeClass("btn-success btn-warning btn-danger");
+                    $("#" + btnObj.id).addClass("btn-default");
+                    $("#" + btnObj.id).attr("disabled", "disabled");
+//                btnObj.disabled = true;
+
+//                $("#" + btnObj.id).each(function(){
+//                    if (this.value = btnObj.value) {
+//                        this.disabled = true;
+//                    }
+//                });
+                }
             });
-        });
-        $("#btnOrderFinish").click(function () {
-        });
-        $("#btnOrderDelete").click(function () {
-        });
+        }
     });
 </script>
 

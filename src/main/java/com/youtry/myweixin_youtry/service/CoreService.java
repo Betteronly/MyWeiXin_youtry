@@ -190,6 +190,6 @@ public class CoreService {
         } else {
             coreService.yuecheService.editUserInfo(userInfo);
         }
-        log.debug("用户信息保存结束：");
+        log.debug("用户信息保存结束");
     }
 }
