@@ -11,4 +11,6 @@ http://localhost/yueche/index?openId=lirong
 #【约车信息管理】入口
 http://localhost/yueche/manage/orderCarInfo
 
-#数据库：anping
+##数据库：anping
+###字符集：utf8 -- UTF-8 Unicode
+###排序规则：utf8_unicode_ci

@@ -9,12 +9,12 @@
   <title>安 平 约 车 管 理</title>
 
   <!-- 引入 Bootstrap -->
-  <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}">
-  <link rel="stylesheet" th:href="@{/bootstrap-switch/css/bootstrap3/bootstrap-switch.css}">
+  <link rel="stylesheet" href="../../../../bootstrap-3.3.7/css/bootstrap.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}">
+  <link rel="stylesheet" href="../../../../bootstrap-switch/css/bootstrap3/bootstrap-switch.css" th:href="@{/bootstrap-switch/css/bootstrap3/bootstrap-switch.css}">
 
-  <script type="text/javascript" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-  <script type="text/javascript" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
-  <script type="text/javascript" th:src="@{/bootstrap-switch/js/bootstrap-switch.js}"></script>
+  <script type="text/javascript" src="../../../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+  <script type="text/javascript" src="../../../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <script type="text/javascript" src="../../../../bootstrap-switch/js/bootstrap-switch.js" th:src="@{/bootstrap-switch/js/bootstrap-switch.js}"></script>
 
 </head>
 <body>
@@ -104,10 +104,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // 开关按钮插件
-        $("#chkbxOrderStatusWaitConfirm").bootstrapSwitch();
-        $("#chkbxOrderStatusWaitDepart").bootstrapSwitch();
-        $("#chkbxOrderStatusFinish").bootstrapSwitch();
-        $("#chkbxOrderStatusDelete").bootstrapSwitch();
+        $("#chkbxOrderStatusWaitConfirm").bootstrapSwitch({size : "mini"});
+        $("#chkbxOrderStatusWaitDepart").bootstrapSwitch({size : "mini"});
+        $("#chkbxOrderStatusFinish").bootstrapSwitch({size : "mini"});
+        $("#chkbxOrderStatusDelete").bootstrapSwitch({size : "mini"});
 
 
         $("#btnSearch").click(function () {
