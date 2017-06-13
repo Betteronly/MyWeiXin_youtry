@@ -57,33 +57,36 @@ public class YuecheController {
         // String state = (String) httpRequest.getAttribute("state");
 
         // 微信静默方式传入OpenID查询用户信息
-        UserInfo userInfo = yuecheService.getUserInfo(openId);
+        if (!StringUtils.isEmpty(openId)) {
+            UserInfo userInfo = yuecheService.getUserInfo(openId);
 
-        model.addAttribute("openId", openId);
-        // 客户NO
-        if (userInfo != null) {
-            model.addAttribute("userNo", userInfo.getUserNo());
-        } else {
-            model.addAttribute("userNo", "");
+            model.addAttribute("openId", openId);
+            // 客户NO
+            if (userInfo != null) {
+                model.addAttribute("userNo", userInfo.getUserNo());
+            } else {
+                model.addAttribute("userNo", "");
+            }
+            // 客户昵称
+            if (userInfo != null) {
+                model.addAttribute("nickName", userInfo.getNickName());
+            } else {
+                model.addAttribute("nickName", "");
+            }
+            // 客户姓名
+            if (userInfo != null) {
+                model.addAttribute("name", userInfo.getName());
+            } else {
+                model.addAttribute("name", "");
+            }
+            // 客户手机号码
+            if (userInfo != null) {
+                model.addAttribute("orderPhone", userInfo.getPhone());
+            } else {
+                model.addAttribute("orderPhone", "");
+            }
         }
-        // 客户昵称
-        if (userInfo != null) {
-            model.addAttribute("nickName", userInfo.getNickName());
-        } else {
-            model.addAttribute("nickName", "");
-        }
-        // 客户姓名
-        if (userInfo != null) {
-            model.addAttribute("name", userInfo.getName());
-        } else {
-            model.addAttribute("name", "");
-        }
-        // 客户手机号码
-        if (userInfo != null) {
-            model.addAttribute("orderPhone", userInfo.getPhone());
-        } else {
-            model.addAttribute("orderPhone", "");
-        }
+
         // 出发地
         List<CodeItem> addrFromList = commonService.getCodeItemList(ADDR_FROM_LIST);
         model.addAttribute("addrFromList", addrFromList);

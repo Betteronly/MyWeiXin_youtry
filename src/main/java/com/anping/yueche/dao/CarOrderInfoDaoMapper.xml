@@ -63,40 +63,41 @@
 
   <update id="updateCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo">
     update car_order_info
-    set
+    <set>
       <if test="carOrderId != null">
-        car_order_id       = #{carOrderId}
+        car_order_id       = #{carOrderId},
       </if>
       <if test="userNo != null">
-       ,user_no            = #{userNo}
+        user_no            = #{userNo},
       </if>
       <if test="openId != null">
-        ,open_id           = #{openId}
+        open_id           = #{openId},
       </if>
       <if test="addrFrom != null">
-        ,addr_from         = #{addrFrom}
+        addr_from         = #{addrFrom},
       </if>
       <if test="addrTo != null">
-        ,addr_to           = #{addrTo}
+        addr_to           = #{addrTo},
       </if>
       <if test="departTime != null">
-        ,depart_time       = #{departTime}
+        depart_time       = #{departTime},
       </if>
       <if test="orderPhone != null">
-        ,order_phone       = #{orderPhone}
+        order_phone       = #{orderPhone},
       </if>
       <if test="orderName != null">
-        ,order_name        = #{orderName}
+        order_name        = #{orderName},
       </if>
       <if test="orderTime != null">
-        ,order_time        = #{orderTime}
+        order_time        = #{orderTime},
       </if>
       <if test="orderStatus != null">
-        ,order_status      = #{orderStatus}
+        order_status      = #{orderStatus},
       </if>
       <if test="dataState != null">
-        ,data_state        = #{dataState}
+        data_state        = #{dataState}
       </if>
+    </set>
     where
       1 = 1
       <!--<if test="carOrderId != null">-->

@@ -60,6 +60,7 @@ public class OAuthServlet extends HttpServlet {
 
         // 跳转到index.jsp
         // request.getRequestDispatcher("OAuthPersonInfo.jsp").forward(request, response);
+        log.info("跳转至 约车首页 openId:[" + openId + "]");
         request.getRequestDispatcher("/yueche/index?openId=" + openId).forward(request, response);
     }
 }

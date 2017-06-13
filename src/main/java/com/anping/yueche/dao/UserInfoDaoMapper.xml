@@ -60,49 +60,48 @@
 
   <update id="updateUserInfo" parameterType="com.anping.yueche.pojo.UserInfo">
     update user_info
-    set
-      1 = 1
+    <set>
       <if test="userNo != null">
-        ,user_no          = #{userNo}
+        user_no          = #{userNo},
       </if>
       <if test="openId != null">
-        ,open_id          = #{openId}
+        open_id          = #{openId},
       </if>
       <if test="nickName != null">
-        ,nick_name        = #{nickName}
+        nick_name        = #{nickName},
       </if>
       <if test="sex != null">
-        ,sex              = #{sex}
+        sex              = #{sex},
       </if>
       <if test="country != null">
-        ,country          = #{country}
+        country          = #{country},
       </if>
       <if test="province != null">
-        ,province         = #{province}
+        province         = #{province},
       </if>
       <if test="city != null">
-        ,city             = #{city}
+        city             = #{city},
       </if>
       <if test="headImgUrl != null">
-        ,head_img_url     = #{headImgUrl}
+        head_img_url     = #{headImgUrl},
       </if>
 
-        ,privilege_list   = ''
+        privilege_list   = '',
 
       <if test="name != null">
-        ,name             = #{name}
+        name             = #{name},
       </if>
       <if test="phone != null">
-        ,phone            = #{phone}
+        phone            = #{phone},
       </if>
       <if test="addr != null">
-        ,addr             = #{addr}
+        addr             = #{addr},
       </if>
       <if test="id != null">
-        ,id               = #{id}
+        id               = #{id},
       </if>
-
-        ,create_time      = now()
+        create_time      = now()
+    </set>
     where
     1 = 1
     <if test="userNo != null">

@@ -1,5 +1,13 @@
 package com.youtry.myweixin_youtry.util;
 
+import org.apache.commons.dbcp.BasicDataSource;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
 /**
  * 类名: DBUtility </br>
  * 描述: 连接数据库工具类 </br>
@@ -9,114 +17,131 @@ package com.youtry.myweixin_youtry.util;
  */
 public class DBUtility {
 
-    // private static BasicDataSource dataSource = null;
-    //
-    // public DBUtility() {
-    // }
-    //
-    // public static void init() {
-    //
-    // Properties dbProps = new Properties();
-    // // 取配置文件可以根据实际的不同修改
-    // try {
-    // dbProps.load(DBUtility.class.getClassLoader().getResourceAsStream("db.properties"));
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
-    //
-    // try {
-    // String driveClassName = dbProps.getProperty("jdbc.driverClassName");
-    // String url = dbProps.getProperty("jdbc.url");
-    // String username = dbProps.getProperty("jdbc.username");
-    // String password = dbProps.getProperty("jdbc.password");
-    //
-    // String initialSize = dbProps.getProperty("dataSource.initialSize");
-    // String minIdle = dbProps.getProperty("dataSource.minIdle");
-    // String maxIdle = dbProps.getProperty("dataSource.maxIdle");
-    // String maxWait = dbProps.getProperty("dataSource.maxWait");
-    // String maxActive = dbProps.getProperty("dataSource.maxActive");
-    //
-    // dataSource = new BasicDataSource();
-    // dataSource.setDriverClassName(driveClassName);
-    // dataSource.setUrl(url);
-    // dataSource.setUsername(username);
-    // dataSource.setPassword(password);
-    //
-    // // 初始化连接数
-    // if (initialSize != null)
-    // dataSource.setInitialSize(Integer.parseInt(initialSize));
-    //
-    // // 最小空闲连接
-    // if (minIdle != null)
-    // dataSource.setMinIdle(Integer.parseInt(minIdle));
-    //
-    // // 最大空闲连接
-    // if (maxIdle != null)
-    // dataSource.setMaxIdle(Integer.parseInt(maxIdle));
-    //
-    // // 超时回收时间(以毫秒为单位)
-    // if (maxWait != null)
-    // dataSource.setMaxWait(Long.parseLong(maxWait));
-    //
-    // // 最大连接数
-    // if (maxActive != null) {
-    // if (!maxActive.trim().equals("0"))
-    // dataSource.setMaxActive(Integer.parseInt(maxActive));
-    // }
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // System.out.println("创建连接池失败!请检查设置!!!");
-    // }
+    private static BasicDataSource dataSource = null;
 
-    /*
-     * 新浪官方连接方式
+    public DBUtility() {
+    }
+
+    public static void init() {
+
+        Properties dbProps = new Properties();
+        // 取配置文件可以根据实际的不同修改
+        try {
+            dbProps.load(DBUtility.class.getClassLoader().getResourceAsStream("jdbc.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //        ////////////////////////////////
+        //        ////         普通连接方式 START //
+        //        ////////////////////////////////
+        //        try {
+        //            String driveClassName = dbProps.getProperty("jdbc.driverClassName");
+        //            String url = dbProps.getProperty("jdbc.url");
+        //            String username = dbProps.getProperty("jdbc.username");
+        //            String password = dbProps.getProperty("jdbc.password");
+        //
+        //            String initialSize = dbProps.getProperty("dataSource.initialSize");
+        //            String minIdle = dbProps.getProperty("dataSource.minIdle");
+        //            String maxIdle = dbProps.getProperty("dataSource.maxIdle");
+        //            String maxWait = dbProps.getProperty("dataSource.maxWait");
+        //            String maxActive = dbProps.getProperty("dataSource.maxActive");
+        //
+        //            dataSource = new BasicDataSource();
+        //            dataSource.setDriverClassName(driveClassName);
+        //            dataSource.setUrl(url);
+        //            dataSource.setUsername(username);
+        //            dataSource.setPassword(password);
+        //
+        //            // 初始化连接数
+        //            if (initialSize != null)
+        //                dataSource.setInitialSize(Integer.parseInt(initialSize));
+        //
+        //            // 最小空闲连接
+        //            if (minIdle != null)
+        //                dataSource.setMinIdle(Integer.parseInt(minIdle));
+        //
+        //            // 最大空闲连接
+        //            if (maxIdle != null)
+        //                dataSource.setMaxIdle(Integer.parseInt(maxIdle));
+        //
+        //            // 超时回收时间(以毫秒为单位)
+        //            if (maxWait != null)
+        //                dataSource.setMaxWait(Long.parseLong(maxWait));
+        //
+        //            // 最大连接数
+        //            if (maxActive != null) {
+        //                if (!maxActive.trim().equals("0"))
+        //                    dataSource.setMaxActive(Integer.parseInt(maxActive));
+        //            }
+        //        } catch (Exception e) {
+        //            e.printStackTrace();
+        //            System.out.println("创建连接池失败!请检查设置!!!");
+        //        }
+        ////////////////////////////////
+        ////         普通连接方式 E N D //
+        ////////////////////////////////
+
+
+        ////////////////////////////////
+        ////      新浪官方连接方式 START //
+        ////////////////////////////////
+//        try {
+//            String driver = "com.mysql.jdbc.Driver";
+//            String username = dbProps.getProperty("jdbc.username");
+//            String password = dbProps.getProperty("jdbc.password");
+//
+//            String MYSQL_HOST = "w.rdc.sae.sina.com.cn";
+//            String MYSQL_HOST_S = "r.rdc.sae.sina.com.cn";
+//            String MYSQL_PORT = "3306";
+//            String MYSQL_DB = "app_youtry";
+//
+//            String dbUrl = String.format("jdbc:mysql://%s:%s/%s", MYSQL_HOST_S, MYSQL_PORT, MYSQL_DB);
+//            Class.forName(driver).newInstance();
+//            Connection conn = DriverManager.getConnection(dbUrl, username, password);
+//            // ...
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("创建连接池失败!请检查设置!!!");
+//        }
+        ////////////////////////////////
+        ////      新浪官方连接方式 E N D //
+        ////////////////////////////////
+    }
+
+
+    /**
+     * 数据库连接
+     *
+     * @return
+     * @throws SQLException
      */
-    // String driver = "com.mysql.jdbc.Driver";
-    // String username = System.getenv("ACCESSKEY");
-    // String password = System.getenv("SECRETKEY");
-    // // System.getenv("MYSQL_HOST_S"); 为从库，只读
-    // String dbUrl = String.format("jdbc:mysql://%s:%s/%s", System.getenv("MYSQL_HOST"), System.getenv("MYSQL_PORT"), System.getenv("MYSQL_DB"));
-    // try {
-    // Class.forName(driver).newInstance();
-    // con = DriverManager.getConnection(dbUrl, username, password);
-    // // ...
-    // } catch (Exception e) {
-    // // ...
-    // }
-    // }
-    //
-    // /**
-    // * 数据库连接
-    // *
-    // * @return
-    // * @throws SQLException
-    // */
-    //
-    // public static synchronized Connection getConnection() throws SQLException {
-    // if (dataSource == null) {
-    // init();
-    // }
-    // Connection conn = null;
-    // if (dataSource != null) {
-    // conn = dataSource.getConnection();
-    // }
-    // return conn;
-    // }
-    //
-    // /**
-    // * 关闭数据库
-    // *
-    // * @param conn
-    // */
-    // public static void closeConnection(Connection conn) {
-    // if (conn != null) {
-    // try {
-    // conn.close();
-    // } catch (SQLException e) {
-    // System.out.println("关闭资源失败");
-    // e.printStackTrace();
-    // }
-    // }
-    // }
+
+    public static synchronized Connection getConnection() throws SQLException {
+        if (dataSource == null) {
+            init();
+        }
+        Connection conn = null;
+        if (dataSource != null) {
+            conn = dataSource.getConnection();
+        }
+        return conn;
+    }
+
+    /**
+     * 关闭数据库
+     *
+     * @param conn
+     */
+    public static void closeConnection(Connection conn) {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("关闭资源失败");
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

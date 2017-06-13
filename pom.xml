@@ -149,7 +149,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
+            <version>5.1.30</version>
+            <!--<version>6.0.6</version>-->
         </dependency>
 
         <!-- Other Web dependencies -->
@@ -310,7 +311,6 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-          <!--
              <resource>
                  <directory>src/main/resources</directory>
                  <includes>
@@ -319,7 +319,6 @@
                  </includes>
                  <filtering>false</filtering>
              </resource>
-          -->
          </resources>
      </build>
  </project>

@@ -103,7 +103,8 @@
                 $('#orderPhone').css("background", "#ebccd1");
                 $('#orderPhone').attr("placeholder", "请输入...");
                 $("#orderPhone").focus();
-            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
+//            } else if (!$("#orderPhone").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) {
+            } else if (isNaN($("#orderPhone").val())) {
                 $('#orderPhone').css("background", "#ebccd1");
                 $('#orderPhone').attr("placeholder", $('#orderPhone').val() + " 格式不正确！请重新输入！");
                 $('#orderPhone').val("");

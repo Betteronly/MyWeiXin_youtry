@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Map;
 
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_ID;
+import static com.youtry.myweixin_youtry.util.AppConfigs.APP_APP_SECRET;
+
 /**
  * 类名: CoreService </br>
  * 描述: 核心服务类 </br>
@@ -46,6 +49,8 @@ public class CoreService {
      * @return xml
      */
     public static String processRequest(HttpServletRequest request) {
+        log.info("处理微信发来的请求 开始");
+
         // xml格式的消息数据
         String respXml = null;
         // 默认返回的文本消息内容
@@ -113,12 +118,12 @@ public class CoreService {
                 }
                 // 上报地理位置
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_LOCATION)) {
+                    log.info("上报地理位置 openId:[" + fromUserName + "]");
 
-                    // String accessToken = CommonUtil.getToken("wxde94b700faa2bf44",
-                    // "8919ff46e96695e488f497c3df5ccff1").getAccessToken(); // 有趣生活 李荣
-                    // String accessToken = CommonUtil.getToken("wx3c37aec02f10b164",
-                    // "743e889ea363a61e4cc8c42643ce25b3").getAccessToken(); // 测试公众号 李荣
-                    String accessToken = CommonUtil.getToken("wx2a0cd38d56194397", "347634d8d5d8a9b82de714eaff8807b1").getAccessToken(); // 安平二手
+                    // String accessToken = CommonUtil.getToken("wxde94b700faa2bf44", "8919ff46e96695e488f497c3df5ccff1").getAccessToken(); // 有趣生活 李荣
+                    // String accessToken = CommonUtil.getToken("wx3c37aec02f10b164", "743e889ea363a61e4cc8c42643ce25b3").getAccessToken(); // 测试公众号 李荣
+                    // String accessToken = CommonUtil.getToken("wx2a0cd38d56194397", "347634d8d5d8a9b82de714eaff8807b1").getAccessToken(); // 安平二手
+                    String accessToken = CommonUtil.getToken(APP_APP_ID, APP_APP_SECRET).getAccessToken();
                     /**
                      * 获取用户信息
                      */
@@ -144,13 +149,14 @@ public class CoreService {
                     System.out.println("经度：" + longitude);
 
                     // 将信息发送给固定人: 测试公众号 李荣
-                    // textMessage.setToUserName("ouJig1XpsaW108s6gaLxrxPyhIaE");
+                    //textMessage.setToUserName("ouJig1XpsaW108s6gaLxrxPyhIaE");
                     // 将信息发送给固定人: 安平二手车 姚永斌
-                    textMessage.setToUserName("osd9pwubMzK6RF5lYeif8HYnk5mY");
+                    //textMessage.setToUserName("osd9pwubMzK6RF5lYeif8HYnk5mY");
                     respContent = "感谢您的对话，我们获取了您的如下信息：\n" + "纬度:" + latitude + "\n经度:" + longitude + "\nOpenID：" + user.getOpenId() + "\n关注状态：" + user.getSubscribe() + "\n关注时间："
                             + user.getSubscribeTime() + "\n昵称：" + user.getNickname() + "\n性别：" + user.getSex() + "\n国家：" + user.getCountry() + "\n省份：" + user.getProvince() + "\n城市：" + user.getCity()
                             + "\n语言：" + user.getLanguage() + "\n头像：" + user.getHeadImgUrl();
 
+                    log.info("上报地理位置同时获取的信息:[" + respContent + "]");
                     // 用户关注时保存用户信息
                     saveUser(user);
                 }
@@ -174,7 +180,11 @@ public class CoreService {
      * @param user
      */
     private static void saveUser(WeixinUserInfo user){
-        log.debug("用户信息保存开始：" + user.toString());
+        log.info("用户信息保存开始：" + user.toString());
+        if (user.getOpenId() == null) {
+            log.info("用户OPEN_ID=NULL");
+            return;
+        }
         UserInfo userInfo = new UserInfo();
         userInfo.setOpenId(user.getOpenId());
         userInfo.setNickName(user.getNickname());
@@ -190,6 +200,6 @@ public class CoreService {
         } else {
             coreService.yuecheService.editUserInfo(userInfo);
         }
-        log.debug("用户信息保存结束");
+        log.info("用户信息保存结束");
     }
 }
