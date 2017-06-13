@@ -156,7 +156,7 @@ public class CoreService {
                             + user.getSubscribeTime() + "\n昵称：" + user.getNickname() + "\n性别：" + user.getSex() + "\n国家：" + user.getCountry() + "\n省份：" + user.getProvince() + "\n城市：" + user.getCity()
                             + "\n语言：" + user.getLanguage() + "\n头像：" + user.getHeadImgUrl();
 
-                    log.info("上报地理位置同时获取的信息:[" + respContent + "]");
+                    log.info("上报地理位置同时获取的信息:[\n" + respContent + "]");
                     // 用户关注时保存用户信息
                     saveUser(user);
                 }
@@ -191,6 +191,7 @@ public class CoreService {
         userInfo.setSex(user.getSex());
         userInfo.setCountry(user.getCountry());
         userInfo.setProvince(user.getProvince());
+        userInfo.setCity(user.getCity());
         userInfo.setHeadImgUrl(user.getHeadImgUrl());
 
         // 该OPEN_ID用户已存在判断

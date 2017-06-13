@@ -29,6 +29,8 @@ public class YuecheServiceImpl implements YuecheService {
             List<UserInfo> userInfoList = userInfoDao.selectUserInfo(userInfoParam);
             if (userInfoList != null && userInfoList.size() > 0){
                 userInfoParam = userInfoList.get(0);
+            } else {
+                return null;
             }
         }
 
