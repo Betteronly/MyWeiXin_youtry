@@ -62,7 +62,7 @@ INSERT INTO `code_dic` VALUES ('ADDR_FROM_LIST', '出发地列表', '保定', '�
 INSERT INTO `code_dic` VALUES ('ADDR_FROM_LIST', '出发地列表', '天津', '天津', '7');
 INSERT INTO `code_dic` VALUES ('ADDR_FROM_LIST', '出发地列表', '安平', '安平', '1');
 INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '北京', '北京', '3');
-INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '霸州', '霸州', '4');
+INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '德州', '德州', '4');
 INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '衡水', '衡水', '5');
 INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '保定', '保定', '6');
 INSERT INTO `code_dic` VALUES ('ADDR_TO_LIST', '目的地列表', '天津', '天津', '7');
