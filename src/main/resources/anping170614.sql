@@ -131,7 +131,7 @@ CREATE TABLE `user_info` (
   `phone` varchar(20) DEFAULT NULL,
   `addr` varchar(255) DEFAULT NULL,
   `id` varchar(255) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`user_no`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
