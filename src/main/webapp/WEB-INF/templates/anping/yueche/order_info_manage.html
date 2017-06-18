@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="../../../../bootstrap-3.3.7/css/bootstrap.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}">
   <link rel="stylesheet" href="../../../../bootstrap-switch/css/bootstrap3/bootstrap-switch.css" th:href="@{/bootstrap-switch/css/bootstrap3/bootstrap-switch.css}">
 
-  <script type="text/javascript" src="../../../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-  <script type="text/javascript" src="../../../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
-  <script type="text/javascript" src="../../../../bootstrap-switch/js/bootstrap-switch.js" th:src="@{/bootstrap-switch/js/bootstrap-switch.js}"></script>
+  <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+  <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <script type="text/javascript" src="../../bootstrap-switch/js/bootstrap-switch.js" th:src="@{/bootstrap-switch/js/bootstrap-switch.js}"></script>
+  <script type="text/javascript" src="../../js/anping_yueche.js" th:src="@{/js/anping_yueche.js}"></script>
 
 </head>
 <body>
@@ -51,6 +52,10 @@
         <div class="bootstrap-switch bootstrap-switch-mini">
           <input type="checkbox" id="chkbxOrderStatusDelete" th:checked="${chkbxOrderStatusDelete}">
         </div>
+      </div>
+      <div class="row center-block text-center">
+        <span class="text-danger">服务电话总数:&emsp; </span>
+        <span class="text-danger" th:text="${countOfServiceTelCall}"></span>
       </div>
       <br/>
       <div class="row center-block text-center">

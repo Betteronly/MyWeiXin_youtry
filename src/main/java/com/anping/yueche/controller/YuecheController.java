@@ -2,6 +2,7 @@ package com.anping.yueche.controller;
 
 import com.anping.yueche.entity.CodeItem;
 import com.anping.yueche.pojo.CarOrderInfo;
+import com.anping.yueche.pojo.ServiceTelCallHistory;
 import com.anping.yueche.pojo.UserInfo;
 import com.anping.yueche.service.CommonService;
 import com.anping.yueche.service.YuecheService;
@@ -194,6 +195,10 @@ public class YuecheController {
             model.addAttribute("chkbxOrderStatusFinish", selectedOrderStatusList.contains("订单完成") ? true : false);
             model.addAttribute("chkbxOrderStatusDelete", selectedOrderStatusList.contains("订单作废") ? true : false);
         }
+
+        ServiceTelCallHistory serviceTelCallHistory = new ServiceTelCallHistory();
+        String count = yuecheService.getServiceTelCallCount(serviceTelCallHistory);
+        model.addAttribute("countOfServiceTelCall", count);
 
         return "anping/yueche/order_info_manage";
     }

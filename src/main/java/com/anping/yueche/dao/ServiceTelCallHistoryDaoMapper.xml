@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anping.yueche.dao.ServiceTelCallHistoryDao">
+  <select id="selectServiceTelCallHistory" parameterType="String" resultType="com.anping.yueche.pojo.ServiceTelCallHistory">
+    select
+       id as id
+      ,tel_from as telFrom
+      ,tel_to as telTo
+      ,call_time as callTime
+    from service_tel_call_history
+    where
+      1 = 1
+      <if test="carOrderId != null">
+        and id = #{id}
+      </if>
+      <if test="openId != null">
+        and tel_from = #{telFrom}
+      </if>
+      <if test="orderStatus != null">
+        and tel_to in ( ${telTo} )
+      </if>
+  </select>
+
+  <!--
+      <insert id="add" parameterType="EStudent" useGeneratedKeys="true" keyProperty="id">
+      insert into TStudent(name, age) values(#{name}, #{age})
+      </insert>
+    -->
+  <insert id="insertServiceTelCallHistory" parameterType="com.anping.yueche.pojo.ServiceTelCallHistory">
+    insert into service_tel_call_history
+      (tel_from
+      ,tel_to
+      ,call_time
+      ) 
+    values 
+      (#{telFrom}
+      ,#{telTo}
+      ,now()
+      )
+  </insert>
+
+  <update id="updateServiceTelCallHistory" parameterType="com.anping.yueche.pojo.ServiceTelCallHistory">
+    update service_tel_call_history
+    <set>
+      <if test="carOrderId != null">
+        id       = #{id},
+      </if>
+    </set>
+    where
+      1 = 1
+      <!--<if test="carOrderId != null">-->
+        and id = #{id}
+      <!--</if>-->
+  </update>
+
+
+  <select id="getCountOfServiceTelCall" parameterType="com.anping.yueche.pojo.ServiceTelCallHistory" resultType="String">
+    select
+      count(1) as count
+    from service_tel_call_history
+  </select>
+</mapper>

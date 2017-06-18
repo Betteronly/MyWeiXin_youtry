@@ -2,12 +2,14 @@ package com.anping.yueche.api;
 
 import com.anping.yueche.pojo.CarOrderInfo;
 import com.anping.yueche.pojo.CarOrderInfoManage;
+import com.anping.yueche.pojo.ServiceTelCallHistory;
 import com.anping.yueche.service.CommonService;
 import com.anping.yueche.service.YuecheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,4 +57,27 @@ public class YuecheApi {
         }
         return carOrderInfo;
     }
+
+    /**
+     * 约车客服电话拨打 记录
+     * @param serviceTelCallHistory
+     * @return
+     */
+    @RequestMapping("/saveServiceTelCall")
+    public int saveServiceTelCall(@RequestBody ServiceTelCallHistory serviceTelCallHistory) {
+        return yuecheService.saveServiceTelCall(serviceTelCallHistory);
+    }
+
+    /**
+     * 约车客服 电话拨打拨打次数
+     * @param serviceTelCallHistory
+     * @return
+     */
+//    @RequestMapping("/countOfServiceTelCall")
+//    public @ResponseBody ServiceTelCallHistory getCountOfServiceTelCall(@RequestBody ServiceTelCallHistory serviceTelCallHistory) {
+//        ServiceTelCallHistory ret = new ServiceTelCallHistory();
+//        String count = yuecheService.getServiceTelCallCount(serviceTelCallHistory);
+//        ret.setCount(count);
+//        return ret;
+//    }
 }

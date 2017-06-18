@@ -18,6 +18,7 @@
 
     <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
     <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+    <script type="text/javascript" src="../../js/anping_yueche.js" th:src="@{/js/anping_yueche.js}"></script>
 
 </head>
 <body>
@@ -74,7 +75,7 @@
             <div class=" row">
                 <button id="btnDoOrderCar" type="button" class="btn-success form-control">约 ！</button>
                 <br />
-                <button id="btnCallService" type="button" class="btn-primary form-control">拨打客服：10086</button>
+                <button id="btnCallService" type="button" class="btn-primary form-control">拨打客服：15933855081</button>
             </div>
         </div>
     </form>
@@ -94,7 +95,8 @@
          }); */
 
         $("#btnCallService").click(function() {
-            window.location.href = "tel:10086";
+            saveServiceTelCall();
+            window.location.href = "tel:15933855081";
         });
 
         $("#btnDoOrderCar").click(function() {

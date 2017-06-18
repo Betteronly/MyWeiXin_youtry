@@ -9,19 +9,22 @@
   <title>安 平 约 车</title>
 
   <!-- 引入 Bootstrap -->
-  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
-        th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
-  <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js"
-          th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-  <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js"
-          th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+  <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+  <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+  <script type="text/javascript" src="../../js/anping_yueche.js" th:src="@{/js/anping_yueche.js}"></script>
 
 </head>
 <body>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnOrderCar").click(function () {
-            var saveDataAry = [];
+//        $("#btnOrderCar").click(function () {
+//            var saveDataAry = [];
+//        });
+
+        $("#btnCallService").click(function() {
+            saveServiceTelCall();
+            window.location.href = "tel:15933855081";
         });
     });
 
@@ -71,11 +74,10 @@
     <br/>
     <div class=" row">
       <button id="backToYueche" type="button" class="btn-success form-control">返回</button>
-      <br/>
-      <button id="btnCallService" type="button" class="btn-primary form-control">
-        <a class="btn-primary" href="tel:10086">拨打客服：10086</a>
-      </button>
+      <br />
+      <button id="btnCallService" type="button" class="btn-primary form-control">拨打客服：15933855081</button>
     </div>
+
   </div>
 </div>
 

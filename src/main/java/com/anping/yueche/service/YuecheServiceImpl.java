@@ -1,8 +1,10 @@
 package com.anping.yueche.service;
 
 import com.anping.yueche.dao.CarOrderInfoDao;
+import com.anping.yueche.dao.ServiceTelCallHistoryDao;
 import com.anping.yueche.dao.UserInfoDao;
 import com.anping.yueche.pojo.CarOrderInfo;
+import com.anping.yueche.pojo.ServiceTelCallHistory;
 import com.anping.yueche.pojo.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,9 @@ public class YuecheServiceImpl implements YuecheService {
 
     @Autowired
     private CarOrderInfoDao carOrderInfoDao;
+
+    @Autowired
+    private ServiceTelCallHistoryDao serviceTelCallHistoryDao;
 
     @Override
     public UserInfo getUserInfo(String openId) {
@@ -75,5 +80,15 @@ public class YuecheServiceImpl implements YuecheService {
     @Override
     public int editCarOrderInfo(CarOrderInfo carOrderInfo){
         return carOrderInfoDao.updateCarOrderInfo(carOrderInfo);
+    }
+
+    @Override
+    public int saveServiceTelCall(ServiceTelCallHistory serviceTelCallHistory){
+        return serviceTelCallHistoryDao.insertServiceTelCallHistory(serviceTelCallHistory);
+    }
+
+    @Override
+    public String getServiceTelCallCount(ServiceTelCallHistory serviceTelCallHistory){
+        return serviceTelCallHistoryDao.getCountOfServiceTelCall(serviceTelCallHistory);
     }
 }

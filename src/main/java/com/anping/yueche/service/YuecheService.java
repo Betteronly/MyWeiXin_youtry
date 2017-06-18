@@ -1,6 +1,7 @@
 package com.anping.yueche.service;
 
 import com.anping.yueche.pojo.CarOrderInfo;
+import com.anping.yueche.pojo.ServiceTelCallHistory;
 import com.anping.yueche.pojo.UserInfo;
 
 import java.util.List;
@@ -56,4 +57,18 @@ public interface YuecheService {
      * @return
      */
     public int editCarOrderInfo(CarOrderInfo carOrderInfo);
+
+    /**
+     * 拨打客服电话 记录
+     *
+     * @return
+     */
+    public int saveServiceTelCall(ServiceTelCallHistory serviceTelCallHistory);
+
+    /**
+     * 拨打客服电话 获取记录数
+     * @param serviceTelCallHistory
+     * @return
+     */
+    public String getServiceTelCallCount(ServiceTelCallHistory serviceTelCallHistory);
 }
