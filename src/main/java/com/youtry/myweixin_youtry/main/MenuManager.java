@@ -31,15 +31,20 @@ public class MenuManager {
         //##################################
         // 第三方用户唯一凭证密钥  APP_SECRET
         //##################################
-//        String appSecret = "743e889ea363a61e4cc8c42643ce25b3"; //李荣 测试用
+        //        String appSecret = "743e889ea363a61e4cc8c42643ce25b3"; //李荣 测试用
         String appSecret = "326ef58e0857052c05f40411f181098a"; // 安平二手交易
+        //##################################
+        // 网站地址 app.url
+        //##################################
+        //        String appSecret = "youtry.applinzi.com"; // 李荣 新浪云
+        String appUrl = "anpingershou.duapp.com"; // 姚永斌 百度云
 
         // 调用接口获取access_token
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         if (null != at) {
             // 调用接口创建菜单
-            int result = WeixinUtil.createMenu(getMenu(appId), at.getAccessToken());
+            int result = WeixinUtil.createMenu(getMenu(appId, appUrl), at.getAccessToken());
 
             // 判断菜单创建结果
             if (0 == result)
@@ -54,7 +59,7 @@ public class MenuManager {
      * 
      * @return
      */
-    private static Menu getMenu(String appId) {
+    private static Menu getMenu(String appId, String appUrl) {
         ViewButton btn11 = new ViewButton();
         btn11.setName("\uE102今天特价产品");
         btn11.setType("view");
@@ -96,12 +101,12 @@ public class MenuManager {
         //###################################################################################
         // 服务号 有获取 基本信息 和 用户信息权限，故 跳转服务，获取OPEN_ID， 且自带用户手机号至约车页面
 //        btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId
-//                + "&redirect_uri=http%3a%2f%2fyoutry.applinzi.com%2foauthServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+//                + "&redirect_uri=http%3a%2f%2f" + appUrl + "%2foauthServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
         //###################################################################################
 
         //###################################################################################
         // 订阅号 没有获取 基本信息 和 用户信息权限，故 直接跳转
-        btn21.setUrl("http://youtry.applinzi.com/yueche/index");
+        btn21.setUrl("http://" + appUrl + "/yueche/index");
         //###################################################################################
 
         ViewButton btn22 = new ViewButton();

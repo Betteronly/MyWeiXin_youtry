@@ -5,6 +5,7 @@ import java.util.Properties;
 
 public class AppConfigs {
 
+    public static String APP_URL = null;
     public static String APP_APP_ID = null;
     public static String APP_APP_SECRET = null;
     public static String APP_OPENID_LIR = null;
@@ -16,6 +17,7 @@ public class AppConfigs {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        APP_URL = appConfigsProps.getProperty("app.url");
         APP_APP_ID = appConfigsProps.getProperty("app.appId");
         APP_APP_SECRET = appConfigsProps.getProperty("app.appSecret");
         APP_OPENID_LIR = appConfigsProps.getProperty("app.openId.lir");
