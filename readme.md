@@ -3,7 +3,7 @@
 http://localhost/coreServlet
 
 #【微信公众号约车】入口，自动跳转至 【约车页面】入口
-http://localhost/oauthServlet
+http://localhost/oauthServlet?code=authdeny
 
 #【约车页面】入口
 http://localhost/yueche/index?openId=lirong

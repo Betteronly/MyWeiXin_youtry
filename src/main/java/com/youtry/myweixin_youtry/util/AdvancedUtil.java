@@ -25,6 +25,7 @@ public class AdvancedUtil {
      * @return WeixinAouth2Token
      */
     public static WeixinOauth2Token getOauth2AccessToken(String appId, String appSecret, String code) {
+        log.info("获取网页授权凭证 START AdvancedUtil.getOauth2AccessToken(" + appId + "," + appSecret + "," + code);
         WeixinOauth2Token wat = null;
         // 拼接请求地址
         String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
@@ -45,9 +46,10 @@ public class AdvancedUtil {
                 wat = null;
                 int errorCode = jsonObject.getInt("errcode");
                 String errorMsg = jsonObject.getString("errmsg");
-                log.error("获取网页授权凭证失败 errcode:{} errmsg:{}", errorCode, errorMsg);
+                log.error("获取网页授权凭证 失败 errcode:{} errmsg:{}", errorCode, errorMsg);
             }
         }
+        log.info("获取网页授权凭证 E N D AdvancedUtil.getOauth2AccessToken(" + appId + "," + appSecret + "," + code);
         return wat;
     }
 

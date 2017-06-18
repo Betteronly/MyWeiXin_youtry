@@ -31,6 +31,7 @@ public class OAuthServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.info("授权后的回调请求处理 START OAuthServlet.doGet()");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
@@ -38,29 +39,31 @@ public class OAuthServlet extends HttpServlet {
         String code = request.getParameter("code");
         String state = request.getParameter("state");
         // TODO
-        String openId = "lirong";
+        String openId = "";
 
-        // 用户同意授权
+        // 用户同意授权  #########  单纯 获取OPEN_ID，跳转至 约车首页。 不获取 用户基础信息
         if (!"authdeny".equals(code)) {
             // 获取网页授权access_token
             WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken(APP_APP_ID, APP_APP_SECRET, code);
             // 网页授权接口访问凭证
-            String accessToken = weixinOauth2Token.getAccessToken();
+//            String accessToken = weixinOauth2Token.getAccessToken();
             // 用户标识
             openId = weixinOauth2Token.getOpenId();
             // 获取用户信息
-            SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken, openId);
+//            SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken, openId);
 
             // 设置要传递的参数
-            request.setAttribute("snsUserInfo", snsUserInfo);
-            request.setAttribute("state", state);
+//            request.setAttribute("snsUserInfo", snsUserInfo);
+//            request.setAttribute("state", state);
 
-            log.info("[### openId]:" + openId);
+            log.info("授权后的回调请求处理 [### openId]:" + openId);
         }
 
         // 跳转到index.jsp
         // request.getRequestDispatcher("OAuthPersonInfo.jsp").forward(request, response);
-        log.info("跳转至 约车首页 openId:[" + openId + "]");
+        log.info("跳转至 约车首页:[.. /yueche/index?openId=" + openId + "]");
         request.getRequestDispatcher("/yueche/index?openId=" + openId).forward(request, response);
+
+        log.info("授权后的回调请求处理 E N D OAuthServlet.doGet()");
     }
 }
