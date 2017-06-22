@@ -1,15 +1,13 @@
 package com.youtry.myweixin_youtry.main;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.youtry.myweixin_youtry.menu.Button;
-import com.youtry.myweixin_youtry.menu.CommonButton;
 import com.youtry.myweixin_youtry.menu.ComplexButton;
 import com.youtry.myweixin_youtry.menu.Menu;
 import com.youtry.myweixin_youtry.menu.ViewButton;
 import com.youtry.myweixin_youtry.pojo.AccessToken;
 import com.youtry.myweixin_youtry.util.WeixinUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 类名: MenuManager </br>
@@ -26,13 +24,13 @@ public class MenuManager {
         //##################################
         // 第三方用户唯一凭证 APPID
         //##################################
-//        String appId = "wx3c37aec02f10b164"; //李荣 测试用
-        String appId = "wxc9b7dadeaabc523d"; // 安平二手交易
+        //        String appId = "wx3c37aec02f10b164"; //李荣 测试用
+        String appId = "wxc9b7dadeaabc523d"; // 安平二手交易 订阅号
         //##################################
         // 第三方用户唯一凭证密钥  APP_SECRET
         //##################################
         //        String appSecret = "743e889ea363a61e4cc8c42643ce25b3"; //李荣 测试用
-        String appSecret = "326ef58e0857052c05f40411f181098a"; // 安平二手交易
+        String appSecret = "326ef58e0857052c05f40411f181098a"; // 安平二手交易 订阅号
         //##################################
         // 网站地址 app.url
         //##################################
@@ -56,52 +54,52 @@ public class MenuManager {
 
     /**
      * 组装菜单数据
-     * 
+     *
      * @return
      */
     private static Menu getMenu(String appId, String appUrl) {
         ViewButton btn11 = new ViewButton();
         btn11.setName("\uE102今天特价产品");
         btn11.setType("view");
-        btn11.setUrl("http://mp.weixin.qq.com/s/BZCHiQxEwntfc_QxYweX2w");
+        btn11.setUrl("http://mp.weixin.qq.com/s/kyjehKx75pxG9sB_WVXooQ");
 
         ViewButton btn12 = new ViewButton();
         btn12.setName("\uE42E二手交通工具");
         btn12.setType("view");
-        btn12.setUrl("http://mp.weixin.qq.com/s/qhd_JN_rFXZVLFVA6uw6Hg");
+        btn12.setUrl("https://mp.weixin.qq.com/s/DVr0ZJXyLLZdB_mO64p2HA");
 
         ViewButton btn13 = new ViewButton();
         btn13.setName("\uE124二手家具货架");
         btn13.setType("view");
-        btn13.setUrl("http://mp.weixin.qq.com/s/kkWnNVJspw8t2WtfR6DGuA");
+        btn13.setUrl("http://mp.weixin.qq.com/s/iFXXpT74jYKGlfUsR5ab6w");
 
         ViewButton btn14 = new ViewButton();
         btn14.setName("\uE00C二手手机、电器");
         btn14.setType("view");
-        btn14.setUrl("http://mp.weixin.qq.com/s/ByTJFGuUUibTV5oVXzsE7A");
+        btn14.setUrl("http://mp.weixin.qq.com/s/OQ2bg0fwKFO91LPC0aQ27A");
 
         ViewButton btn15 = new ViewButton();
         btn15.setName("\uE331二手求购、回收");
         btn15.setType("view");
         btn15.setUrl("http://mp.weixin.qq.com/s/cR_pcctRaW14kWlEqkBujA");
 
-//        CommonButton btn14 = new CommonButton();
-//        btn14.setName("\uE00C二手手机、电器");
-//        btn14.setType("click");
-//        btn14.setKey("14");
-//
-//        CommonButton btn15 = new CommonButton();
-//        btn15.setName("二手求购、回收");
-//        btn15.setType("click");
-//        btn15.setKey("14");
+        //        CommonButton btn14 = new CommonButton();
+        //        btn14.setName("\uE00C二手手机、电器");
+        //        btn14.setType("click");
+        //        btn14.setKey("14");
+        //
+        //        CommonButton btn15 = new CommonButton();
+        //        btn15.setName("二手求购、回收");
+        //        btn15.setType("click");
+        //        btn15.setKey("14");
 
         ViewButton btn21 = new ViewButton();
         btn21.setName("平台约车");
         btn21.setType("view");
         //###################################################################################
         // 服务号 有获取 基本信息 和 用户信息权限，故 跳转服务，获取OPEN_ID， 且自带用户手机号至约车页面
-//        btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId
-//                + "&redirect_uri=http%3a%2f%2f" + appUrl + "%2foauthServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+        //        btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId
+        //                + "&redirect_uri=http%3a%2f%2f" + appUrl + "%2foauthServlet&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
         //###################################################################################
 
         //###################################################################################
@@ -120,9 +118,9 @@ public class MenuManager {
         btn23.setUrl("http://www.juzicc.com");
 
         ViewButton btn24 = new ViewButton();
-        btn24.setName("小品大联欢");
+        btn24.setName("二手住房厂房");
         btn24.setType("view");
-        btn24.setUrl("http://www.aidabang.com/wei/xiaopin/main.php");
+        btn24.setUrl("http://mp.weixin.qq.com/s/0yRd8_eV1Cdse_movpWElw");
 
         ViewButton btn25 = new ViewButton();
         btn25.setName("便民信息大全");
@@ -143,7 +141,7 @@ public class MenuManager {
         ViewButton btn33 = new ViewButton();
         btn33.setName("二手机器、设备");
         btn33.setType("view");
-        btn33.setUrl("http://mp.weixin.qq.com/s/myKTfX0hbxRloQaercDUKA");
+        btn33.setUrl("http://mp.weixin.qq.com/s/X_2n6-JjuvXlt9k_8b281A");
 
         ViewButton btn34 = new ViewButton();
         btn34.setName("消防队路口路况");

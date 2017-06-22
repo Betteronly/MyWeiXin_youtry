@@ -16,9 +16,9 @@
         <script type="text/javascript" src="../../js/teachtools.js" th:src="@{/js/teachtools.js}"></script>
     -->
 
-    <script type="text/javascript" src="../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
-    <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
-    <script type="text/javascript" src="../../js/anping_yueche.js" th:src="@{/js/anping_yueche.js}"></script>
+    <script type="text/javascript" src="../../../../jquery-3.1.1/jquery-3.1.1.min.js" th:src="@{/jquery-3.1.1/jquery-3.1.1.min.js}"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7/js/bootstrap.js" th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+    <script type="text/javascript" src="../../../../js/anping_yueche.js" th:src="@{/js/anping_yueche.js}"></script>
 
 </head>
 <body>
@@ -94,6 +94,43 @@
          });
          }); */
 
+        /**
+         * 出发地 选择，
+         */
+        $("#addrFrom").change(function(){
+            if($("#addrFrom").val() == "安平") {
+                if ($("#addrTo").val() == "安平" ) {
+                    $("#addrTo option[value='" + $("select#addrTo").val() +"']").removeAttr("selected");
+                    $("#addrTo").find("option[value='石家庄']").attr("selected", true);
+                    $("#addrTo").val("石家庄");
+                }
+            } else {
+                $("#addrTo option[value='" + $("#addrTo").val() +"']").removeAttr("selected");
+                $("#addrTo").find("option[value='安平']").attr("selected", true);
+                $("#addrTo").val("安平");
+            }
+        });
+
+        /**
+         * 目的地 选择
+         */
+        $("#addrTo").change(function(){
+            if($("#addrTo").val() == "安平") {
+                if ($("#addrFrom").val() == "安平") {
+                    $("#addrFrom option[value='" + $("#addrFrom").val() +"']").removeAttr("selected");
+                    $("#addrFrom").find("option[value='石家庄']").attr("selected", true);
+                    $("#addrFrom").val("石家庄");
+                }
+            } else {
+                $("#addrFrom option[value='" + $("#addrFrom").val() +"']").removeAttr("selected");
+                $("#addrFrom").find("option[value='安平']").attr("selected", true);
+                $("#addrFrom").val("安平");
+            }
+        });
+
+        /**
+         * 客服按钮按下
+         */
         $("#btnCallService").click(function() {
             saveServiceTelCall();
             window.location.href = "tel:15933855081";
