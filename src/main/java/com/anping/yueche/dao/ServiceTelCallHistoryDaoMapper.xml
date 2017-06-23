@@ -19,6 +19,7 @@
       <if test="orderStatus != null">
         and tel_to in ( ${telTo} )
       </if>
+    order by id
   </select>
 
   <!--
