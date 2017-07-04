@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.anping.yueche.utils.CommonConstants.*;
+import com.youtry.myweixin_youtry.util.SendSMSUtil;
 
 @Controller
 @RequestMapping("/yueche")
@@ -152,6 +153,8 @@ public class YuecheController {
 
         if (ret) {
             model.addAttribute("carOderStatus", "OK");
+            // 发送客服通知短信
+            SendSMSUtil.sendSingleSms(null, carOrderInfo.getCarOrderId());
         } else {
             model.addAttribute("carOderStatus", "NG");
         }

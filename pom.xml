@@ -280,6 +280,14 @@
             <artifactId>ezmorph</artifactId>
             <version>1.0.6</version>
         </dependency>
+        <!-- 百度 Java sdk begin -->
+        <!-- https://mvnrepository.com/artifact/com.baidubce/bce-java-sdk -->
+        <dependency>
+            <groupId>com.baidubce</groupId>
+            <artifactId>bce-java-sdk</artifactId>
+            <version>0.10.19</version>
+        </dependency>
+        <!-- 百度 Java sdk e n d -->
     </dependencies>
     <build>
         <finalName>myweixin_youtry</finalName>

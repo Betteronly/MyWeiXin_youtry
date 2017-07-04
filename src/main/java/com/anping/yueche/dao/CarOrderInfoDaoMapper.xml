@@ -27,6 +27,7 @@
         and order_status in ( ${orderStatus} )
       </if>
       and data_state = '0'
+    order by car_order_id
   </select>
 
   <!--
@@ -34,7 +35,7 @@
       insert into TStudent(name, age) values(#{name}, #{age})
       </insert>
     -->
-  <insert id="insertCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo">
+  <insert id="insertCarOrderInfo" parameterType="com.anping.yueche.pojo.CarOrderInfo" useGeneratedKeys="true" keyProperty="carOrderId">
     insert into car_order_info
       (user_no
       ,open_id
